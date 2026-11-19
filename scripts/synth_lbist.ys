@@ -1,0 +1,4 @@
+read_verilog rtl/lfsr32.v rtl/misr16.v rtl/cut_adder.v rtl/lbist_top.v
+hierarchy -check -top lbist_top
+synth -top lbist_top -flatten
+stat

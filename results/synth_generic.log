@@ -1,0 +1,2287 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Executing script file `scripts/synth_generic.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/sram_model.v
+Parsing Verilog input from `rtl/sram_model.v' to AST representation.
+Generating RTLIL representation for module `\sram_model'.
+Warning: Replacing memory \mem with list of registers. See rtl/sram_model.v:40, rtl/sram_model.v:23
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/mbist_ctrl.v
+Parsing Verilog input from `rtl/mbist_ctrl.v' to AST representation.
+Generating RTLIL representation for module `\mbist_ctrl'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: rtl/mem_bist_wrap.v
+Parsing Verilog input from `rtl/mem_bist_wrap.v' to AST representation.
+Generating RTLIL representation for module `\mem_bist_wrap'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: rtl/jtag_tap.v
+Parsing Verilog input from `rtl/jtag_tap.v' to AST representation.
+Generating RTLIL representation for module `\jtag_tap'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: rtl/dft_top.v
+Parsing Verilog input from `rtl/dft_top.v' to AST representation.
+Generating RTLIL representation for module `\dft_top'.
+Successfully finished Verilog frontend.
+
+6. Executing HIERARCHY pass (managing design hierarchy).
+
+6.1. Analyzing design hierarchy..
+Top module:  \dft_top
+Used module:     \jtag_tap
+Used module:     \mem_bist_wrap
+Used module:         \sram_model
+Used module:         \mbist_ctrl
+Parameter \AW = 6
+Parameter \DW = 8
+Parameter \FAULT_TYPE = 0
+Parameter \F_ADDR = 10
+Parameter \F_BIT = 2
+Parameter \AGG_ADDR = 3
+
+6.2. Executing AST frontend in derive mode using pre-parsed AST for module `\sram_model'.
+Parameter \AW = 6
+Parameter \DW = 8
+Parameter \FAULT_TYPE = 0
+Parameter \F_ADDR = 10
+Parameter \F_BIT = 2
+Parameter \AGG_ADDR = 3
+Generating RTLIL representation for module `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model'.
+Warning: Replacing memory \mem with list of registers. See rtl/sram_model.v:40, rtl/sram_model.v:23
+Parameter \AW = 6
+Parameter \DW = 8
+
+6.3. Executing AST frontend in derive mode using pre-parsed AST for module `\mbist_ctrl'.
+Parameter \AW = 6
+Parameter \DW = 8
+Generating RTLIL representation for module `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl'.
+Parameter \BSR_LEN = 8
+
+6.4. Executing AST frontend in derive mode using pre-parsed AST for module `\jtag_tap'.
+Parameter \BSR_LEN = 8
+Generating RTLIL representation for module `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000'.
+Parameter \AW = 6
+Parameter \DW = 8
+Parameter \FAULT_TYPE = 0
+
+6.5. Executing AST frontend in derive mode using pre-parsed AST for module `\mem_bist_wrap'.
+Parameter \AW = 6
+Parameter \DW = 8
+Parameter \FAULT_TYPE = 0
+Generating RTLIL representation for module `$paramod$c32243ca1a9614fa830d31fabe2eedecbb0b6765\mem_bist_wrap'.
+
+6.6. Analyzing design hierarchy..
+Top module:  \dft_top
+Used module:     $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000
+Used module:     $paramod$c32243ca1a9614fa830d31fabe2eedecbb0b6765\mem_bist_wrap
+Used module:         \sram_model
+Used module:         \mbist_ctrl
+Parameter \AW = 6
+Parameter \DW = 8
+Parameter \FAULT_TYPE = 0
+Parameter \F_ADDR = 10
+Parameter \F_BIT = 2
+Parameter \AGG_ADDR = 3
+Found cached RTLIL representation for module `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model'.
+Parameter \AW = 6
+Parameter \DW = 8
+Found cached RTLIL representation for module `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl'.
+
+6.7. Analyzing design hierarchy..
+Top module:  \dft_top
+Used module:     $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000
+Used module:     $paramod$c32243ca1a9614fa830d31fabe2eedecbb0b6765\mem_bist_wrap
+Used module:         $paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model
+Used module:         $paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl
+
+6.8. Analyzing design hierarchy..
+Top module:  \dft_top
+Used module:     $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000
+Used module:     $paramod$c32243ca1a9614fa830d31fabe2eedecbb0b6765\mem_bist_wrap
+Used module:         $paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model
+Used module:         $paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl
+Removing unused module `\jtag_tap'.
+Removing unused module `\mem_bist_wrap'.
+Removing unused module `\mbist_ctrl'.
+Removing unused module `\sram_model'.
+Removed 4 unused modules.
+
+7. Executing PROC pass (convert processes to netlists).
+
+7.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+Cleaned up 2 empty switches.
+
+7.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$rtl/dft_top.v:27$192 in module dft_top.
+Marked 1 switch rules as full_case in process $proc$rtl/dft_top.v:21$188 in module dft_top.
+Marked 1 switch rules as full_case in process $proc$rtl/jtag_tap.v:107$367 in module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+Marked 3 switch rules as full_case in process $proc$rtl/jtag_tap.v:101$366 in module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+Marked 1 switch rules as full_case in process $proc$rtl/jtag_tap.v:84$359 in module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+Marked 1 switch rules as full_case in process $proc$rtl/jtag_tap.v:70$356 in module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+Marked 2 switch rules as full_case in process $proc$rtl/jtag_tap.v:53$347 in module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+Marked 1 switch rules as full_case in process $proc$rtl/jtag_tap.v:49$344 in module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+Removed 1 dead cases from process $proc$rtl/jtag_tap.v:24$326 in module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+Marked 2 switch rules as full_case in process $proc$rtl/jtag_tap.v:24$326 in module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+Marked 4 switch rules as full_case in process $proc$rtl/mbist_ctrl.v:44$245 in module $paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.
+Removed 3 dead cases from process $proc$rtl/sram_model.v:27$197 in module $paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.
+Marked 6 switch rules as full_case in process $proc$rtl/sram_model.v:27$197 in module $paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.
+Removed a total of 4 dead cases.
+
+7.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 7 redundant assignments.
+Promoted 156 assignments to connections.
+
+7.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:0$224'.
+  Set init value: \rdata = 8'00000000
+  Set init value: \mem[0] = 8'10101010
+  Set init value: \mem[1] = 8'10101010
+  Set init value: \mem[2] = 8'10101010
+  Set init value: \mem[3] = 8'10101010
+  Set init value: \mem[4] = 8'10101010
+  Set init value: \mem[5] = 8'10101010
+  Set init value: \mem[6] = 8'10101010
+  Set init value: \mem[7] = 8'10101010
+  Set init value: \mem[8] = 8'10101010
+  Set init value: \mem[9] = 8'10101010
+  Set init value: \mem[10] = 8'10101010
+  Set init value: \mem[11] = 8'10101010
+  Set init value: \mem[12] = 8'10101010
+  Set init value: \mem[13] = 8'10101010
+  Set init value: \mem[14] = 8'10101010
+  Set init value: \mem[15] = 8'10101010
+  Set init value: \mem[16] = 8'10101010
+  Set init value: \mem[17] = 8'10101010
+  Set init value: \mem[18] = 8'10101010
+  Set init value: \mem[19] = 8'10101010
+  Set init value: \mem[20] = 8'10101010
+  Set init value: \mem[21] = 8'10101010
+  Set init value: \mem[22] = 8'10101010
+  Set init value: \mem[23] = 8'10101010
+  Set init value: \mem[24] = 8'10101010
+  Set init value: \mem[25] = 8'10101010
+  Set init value: \mem[26] = 8'10101010
+  Set init value: \mem[27] = 8'10101010
+  Set init value: \mem[28] = 8'10101010
+  Set init value: \mem[29] = 8'10101010
+  Set init value: \mem[30] = 8'10101010
+  Set init value: \mem[31] = 8'10101010
+  Set init value: \mem[32] = 8'10101010
+  Set init value: \mem[33] = 8'10101010
+  Set init value: \mem[34] = 8'10101010
+  Set init value: \mem[35] = 8'10101010
+  Set init value: \mem[36] = 8'10101010
+  Set init value: \mem[37] = 8'10101010
+  Set init value: \mem[38] = 8'10101010
+  Set init value: \mem[39] = 8'10101010
+  Set init value: \mem[40] = 8'10101010
+  Set init value: \mem[41] = 8'10101010
+  Set init value: \mem[42] = 8'10101010
+  Set init value: \mem[43] = 8'10101010
+  Set init value: \mem[44] = 8'10101010
+  Set init value: \mem[45] = 8'10101010
+  Set init value: \mem[46] = 8'10101010
+  Set init value: \mem[47] = 8'10101010
+  Set init value: \mem[48] = 8'10101010
+  Set init value: \mem[49] = 8'10101010
+  Set init value: \mem[50] = 8'10101010
+  Set init value: \mem[51] = 8'10101010
+  Set init value: \mem[52] = 8'10101010
+  Set init value: \mem[53] = 8'10101010
+  Set init value: \mem[54] = 8'10101010
+  Set init value: \mem[55] = 8'10101010
+  Set init value: \mem[56] = 8'10101010
+  Set init value: \mem[57] = 8'10101010
+  Set init value: \mem[58] = 8'10101010
+  Set init value: \mem[59] = 8'10101010
+  Set init value: \mem[60] = 8'10101010
+  Set init value: \mem[61] = 8'10101010
+  Set init value: \mem[62] = 8'10101010
+  Set init value: \mem[63] = 8'10101010
+
+7.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \trst_n in `\dft_top.$proc$rtl/dft_top.v:27$192'.
+Found async reset \rst_n in `\dft_top.$proc$rtl/dft_top.v:21$188'.
+Found async reset \trst_n in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:107$367'.
+Found async reset \trst_n in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:84$359'.
+Found async reset \trst_n in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:53$347'.
+Found async reset \trst_n in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:24$326'.
+Found async reset \rst_n in `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+
+7.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~27 debug messages>
+
+7.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\dft_top.$proc$rtl/dft_top.v:27$192'.
+     1/3: $0\fail_s[2:0]
+     2/3: $0\done_s[2:0]
+     3/3: $0\busy_s[2:0]
+Creating decoders for process `\dft_top.$proc$rtl/dft_top.v:21$188'.
+     1/1: $0\go_s[2:0]
+Creating decoders for process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:107$367'.
+     1/2: $0\tdo[0:0]
+     2/2: $0\tdo_en[0:0]
+Creating decoders for process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:101$366'.
+     1/3: $3\dr_bit[0:0]
+     2/3: $2\dr_bit[0:0]
+     3/3: $1\dr_bit[0:0]
+Creating decoders for process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:84$359'.
+     1/3: $0\extest_mode[0:0]
+     2/3: $0\bsr_up[7:0]
+     3/3: $0\mbist_go[0:0]
+Creating decoders for process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:70$356'.
+     1/4: $0\mb_sr[2:0]
+     2/4: $0\bsr_sr[7:0]
+     3/4: $0\id_sr[31:0]
+     4/4: $0\bypass_r[0:0]
+Creating decoders for process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:53$347'.
+     1/1: $0\ir[3:0]
+Creating decoders for process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:49$344'.
+     1/1: $0\ir_sr[3:0]
+Creating decoders for process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:24$326'.
+     1/1: $0\state[3:0]
+Creating decoders for process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$319'.
+Creating decoders for process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$314'.
+Creating decoders for process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+     1/42: $4\has_rd$func$rtl/mbist_ctrl.v:73$232.e[2:0]$309
+     2/42: $4\has_rd$func$rtl/mbist_ctrl.v:73$232.$result[0:0]$308
+     3/42: $4\dir_up$func$rtl/mbist_ctrl.v:72$231.e[2:0]$307
+     4/42: $4\dir_up$func$rtl/mbist_ctrl.v:72$231.$result[0:0]$306
+     5/42: $3\has_rd$func$rtl/mbist_ctrl.v:67$230.$result[0:0]$293
+     6/42: $3\has_rd$func$rtl/mbist_ctrl.v:67$230.e[2:0]$294
+     7/42: $3\dir_up$func$rtl/mbist_ctrl.v:66$229.$result[0:0]$291
+     8/42: $3\dir_up$func$rtl/mbist_ctrl.v:66$229.e[2:0]$292
+     9/42: $3\has_rd$func$rtl/mbist_ctrl.v:73$232.e[2:0]$298
+    10/42: $3\has_rd$func$rtl/mbist_ctrl.v:73$232.$result[0:0]$297
+    11/42: $3\dir_up$func$rtl/mbist_ctrl.v:72$231.e[2:0]$296
+    12/42: $3\dir_up$func$rtl/mbist_ctrl.v:72$231.$result[0:0]$295
+    13/42: $2\has_rd$func$rtl/mbist_ctrl.v:73$232.e[2:0]$282
+    14/42: $2\has_rd$func$rtl/mbist_ctrl.v:73$232.$result[0:0]$281
+    15/42: $2\dir_up$func$rtl/mbist_ctrl.v:72$231.e[2:0]$280
+    16/42: $2\dir_up$func$rtl/mbist_ctrl.v:72$231.$result[0:0]$279
+    17/42: $2\has_rd$func$rtl/mbist_ctrl.v:67$230.e[2:0]$278
+    18/42: $2\has_rd$func$rtl/mbist_ctrl.v:67$230.$result[0:0]$277
+    19/42: $2\dir_up$func$rtl/mbist_ctrl.v:66$229.e[2:0]$276
+    20/42: $2\dir_up$func$rtl/mbist_ctrl.v:66$229.$result[0:0]$275
+    21/42: $2\has_wr$func$rtl/mbist_ctrl.v:61$228.e[2:0]$274
+    22/42: $2\has_wr$func$rtl/mbist_ctrl.v:61$228.$result[0:0]$273
+    23/42: $2\exp_v$func$rtl/mbist_ctrl.v:57$227.e[2:0]$272
+    24/42: $2\exp_v$func$rtl/mbist_ctrl.v:57$227.$result[0:0]$271
+    25/42: $1\has_rd$func$rtl/mbist_ctrl.v:73$232.e[2:0]$270
+    26/42: $1\has_rd$func$rtl/mbist_ctrl.v:73$232.$result[0:0]$269
+    27/42: $1\dir_up$func$rtl/mbist_ctrl.v:72$231.e[2:0]$268
+    28/42: $1\dir_up$func$rtl/mbist_ctrl.v:72$231.$result[0:0]$267
+    29/42: $1\has_rd$func$rtl/mbist_ctrl.v:67$230.e[2:0]$266
+    30/42: $1\has_rd$func$rtl/mbist_ctrl.v:67$230.$result[0:0]$265
+    31/42: $1\dir_up$func$rtl/mbist_ctrl.v:66$229.e[2:0]$264
+    32/42: $1\dir_up$func$rtl/mbist_ctrl.v:66$229.$result[0:0]$263
+    33/42: $1\has_wr$func$rtl/mbist_ctrl.v:61$228.e[2:0]$262
+    34/42: $1\has_wr$func$rtl/mbist_ctrl.v:61$228.$result[0:0]$261
+    35/42: $1\exp_v$func$rtl/mbist_ctrl.v:57$227.e[2:0]$260
+    36/42: $1\exp_v$func$rtl/mbist_ctrl.v:57$227.$result[0:0]$259
+    37/42: $0\elem[2:0]
+    38/42: $0\st[2:0]
+    39/42: $0\fail_addr[5:0]
+    40/42: $0\fail[0:0]
+    41/42: $0\done[0:0]
+    42/42: $0\addr[5:0]
+Creating decoders for process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:0$224'.
+Creating decoders for process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+     1/210: $3$mem2reg_rd$\mem$rtl/sram_model.v:43$196_DATA[7:0]$223
+     2/210: $3\mem[0][7:0]
+     3/210: $3\mem[63][7:0]
+     4/210: $3\mem[62][7:0]
+     5/210: $3\mem[61][7:0]
+     6/210: $3\mem[60][7:0]
+     7/210: $3\mem[59][7:0]
+     8/210: $3\mem[58][7:0]
+     9/210: $3\mem[57][7:0]
+    10/210: $3\mem[56][7:0]
+    11/210: $3\mem[55][7:0]
+    12/210: $3\mem[54][7:0]
+    13/210: $3\mem[53][7:0]
+    14/210: $3\mem[52][7:0]
+    15/210: $3\mem[51][7:0]
+    16/210: $3\mem[50][7:0]
+    17/210: $3\mem[49][7:0]
+    18/210: $3\mem[48][7:0]
+    19/210: $3\mem[47][7:0]
+    20/210: $3\mem[46][7:0]
+    21/210: $3\mem[45][7:0]
+    22/210: $3\mem[44][7:0]
+    23/210: $3\mem[43][7:0]
+    24/210: $3\mem[42][7:0]
+    25/210: $3\mem[41][7:0]
+    26/210: $3\mem[40][7:0]
+    27/210: $3\mem[39][7:0]
+    28/210: $3\mem[38][7:0]
+    29/210: $3\mem[37][7:0]
+    30/210: $3\mem[36][7:0]
+    31/210: $3\mem[35][7:0]
+    32/210: $3\mem[34][7:0]
+    33/210: $3\mem[33][7:0]
+    34/210: $3\mem[32][7:0]
+    35/210: $3\mem[31][7:0]
+    36/210: $3\mem[30][7:0]
+    37/210: $3\mem[29][7:0]
+    38/210: $3\mem[28][7:0]
+    39/210: $3\mem[27][7:0]
+    40/210: $3\mem[26][7:0]
+    41/210: $3\mem[25][7:0]
+    42/210: $3\mem[24][7:0]
+    43/210: $3\mem[23][7:0]
+    44/210: $3\mem[22][7:0]
+    45/210: $3\mem[21][7:0]
+    46/210: $3\mem[20][7:0]
+    47/210: $3\mem[19][7:0]
+    48/210: $3\mem[18][7:0]
+    49/210: $3\mem[17][7:0]
+    50/210: $3\mem[16][7:0]
+    51/210: $3\mem[15][7:0]
+    52/210: $3\mem[14][7:0]
+    53/210: $3\mem[13][7:0]
+    54/210: $3\mem[12][7:0]
+    55/210: $3\mem[11][7:0]
+    56/210: $4\mem[10][7:0]
+    57/210: $3\mem[9][7:0]
+    58/210: $3\mem[8][7:0]
+    59/210: $3\mem[7][7:0]
+    60/210: $3\mem[6][7:0]
+    61/210: $3\mem[5][7:0]
+    62/210: $3\mem[4][7:0]
+    63/210: $3\mem[3][7:0]
+    64/210: $3\mem[2][7:0]
+    65/210: $3\mem[1][7:0]
+    66/210: $3\mem[10][2:2]
+    67/210: $3$mem2reg_rd$\mem$rtl/sram_model.v:39$194_DATA[7:0]$217
+    68/210: $2\mem[63][7:0]
+    69/210: $2\mem[62][7:0]
+    70/210: $2\mem[61][7:0]
+    71/210: $2\mem[60][7:0]
+    72/210: $2\mem[59][7:0]
+    73/210: $2\mem[58][7:0]
+    74/210: $2\mem[57][7:0]
+    75/210: $2\mem[56][7:0]
+    76/210: $2\mem[55][7:0]
+    77/210: $2\mem[54][7:0]
+    78/210: $2\mem[53][7:0]
+    79/210: $2\mem[52][7:0]
+    80/210: $2\mem[51][7:0]
+    81/210: $2\mem[50][7:0]
+    82/210: $2\mem[49][7:0]
+    83/210: $2\mem[48][7:0]
+    84/210: $2\mem[47][7:0]
+    85/210: $2\mem[46][7:0]
+    86/210: $2\mem[45][7:0]
+    87/210: $2\mem[44][7:0]
+    88/210: $2\mem[43][7:0]
+    89/210: $2\mem[42][7:0]
+    90/210: $2\mem[41][7:0]
+    91/210: $2\mem[40][7:0]
+    92/210: $2\mem[39][7:0]
+    93/210: $2\mem[38][7:0]
+    94/210: $2\mem[37][7:0]
+    95/210: $2\mem[36][7:0]
+    96/210: $2\mem[35][7:0]
+    97/210: $2\mem[34][7:0]
+    98/210: $2\mem[33][7:0]
+    99/210: $2\mem[32][7:0]
+   100/210: $2\mem[31][7:0]
+   101/210: $2\mem[30][7:0]
+   102/210: $2\mem[29][7:0]
+   103/210: $2\mem[28][7:0]
+   104/210: $2\mem[27][7:0]
+   105/210: $2\mem[26][7:0]
+   106/210: $2\mem[25][7:0]
+   107/210: $2\mem[24][7:0]
+   108/210: $2\mem[23][7:0]
+   109/210: $2\mem[22][7:0]
+   110/210: $2\mem[21][7:0]
+   111/210: $2\mem[20][7:0]
+   112/210: $2\mem[19][7:0]
+   113/210: $2\mem[18][7:0]
+   114/210: $2\mem[17][7:0]
+   115/210: $2\mem[16][7:0]
+   116/210: $2\mem[15][7:0]
+   117/210: $2\mem[14][7:0]
+   118/210: $2\mem[13][7:0]
+   119/210: $2\mem[12][7:0]
+   120/210: $2\mem[11][7:0]
+   121/210: $2\mem[10][7:0]
+   122/210: $2\mem[9][7:0]
+   123/210: $2\mem[8][7:0]
+   124/210: $2\mem[7][7:0]
+   125/210: $2\mem[6][7:0]
+   126/210: $2\mem[5][7:0]
+   127/210: $2\mem[4][7:0]
+   128/210: $2\mem[3][7:0]
+   129/210: $2\mem[2][7:0]
+   130/210: $2\mem[1][7:0]
+   131/210: $2\mem[0][7:0]
+   132/210: $2$mem2reg_wr$\mem$rtl/sram_model.v:41$195_ADDR[5:0]$212
+   133/210: $2$mem2reg_wr$\mem$rtl/sram_model.v:41$195_DATA[7:0]$213
+   134/210: $2$mem2reg_rd$\mem$rtl/sram_model.v:39$194_DATA[7:0]$211
+   135/210: $2$mem2reg_rd$\mem$rtl/sram_model.v:39$194_ADDR[5:0]$210
+   136/210: $2\nv[7:0]
+   137/210: $2$mem2reg_rd$\mem$rtl/sram_model.v:43$196_DATA[7:0]$215
+   138/210: $2$mem2reg_rd$\mem$rtl/sram_model.v:43$196_ADDR[5:0]$214
+   139/210: $1$mem2reg_rd$\mem$rtl/sram_model.v:43$196_DATA[7:0]$209
+   140/210: $1$mem2reg_rd$\mem$rtl/sram_model.v:43$196_ADDR[5:0]$208
+   141/210: $1$mem2reg_wr$\mem$rtl/sram_model.v:41$195_DATA[7:0]$207
+   142/210: $1$mem2reg_wr$\mem$rtl/sram_model.v:41$195_ADDR[5:0]$206
+   143/210: $1$mem2reg_rd$\mem$rtl/sram_model.v:39$194_DATA[7:0]$205
+   144/210: $1$mem2reg_rd$\mem$rtl/sram_model.v:39$194_ADDR[5:0]$204
+   145/210: $1\mem[63][7:0]
+   146/210: $1\mem[62][7:0]
+   147/210: $1\mem[61][7:0]
+   148/210: $1\mem[60][7:0]
+   149/210: $1\mem[59][7:0]
+   150/210: $1\mem[58][7:0]
+   151/210: $1\mem[57][7:0]
+   152/210: $1\mem[56][7:0]
+   153/210: $1\mem[55][7:0]
+   154/210: $1\mem[54][7:0]
+   155/210: $1\mem[53][7:0]
+   156/210: $1\mem[52][7:0]
+   157/210: $1\mem[51][7:0]
+   158/210: $1\mem[50][7:0]
+   159/210: $1\mem[49][7:0]
+   160/210: $1\mem[48][7:0]
+   161/210: $1\mem[47][7:0]
+   162/210: $1\mem[46][7:0]
+   163/210: $1\mem[45][7:0]
+   164/210: $1\mem[44][7:0]
+   165/210: $1\mem[43][7:0]
+   166/210: $1\mem[42][7:0]
+   167/210: $1\mem[41][7:0]
+   168/210: $1\mem[40][7:0]
+   169/210: $1\mem[39][7:0]
+   170/210: $1\mem[38][7:0]
+   171/210: $1\mem[37][7:0]
+   172/210: $1\mem[36][7:0]
+   173/210: $1\mem[35][7:0]
+   174/210: $1\mem[34][7:0]
+   175/210: $1\mem[33][7:0]
+   176/210: $1\mem[32][7:0]
+   177/210: $1\mem[31][7:0]
+   178/210: $1\mem[30][7:0]
+   179/210: $1\mem[29][7:0]
+   180/210: $1\mem[28][7:0]
+   181/210: $1\mem[27][7:0]
+   182/210: $1\mem[26][7:0]
+   183/210: $1\mem[25][7:0]
+   184/210: $1\mem[24][7:0]
+   185/210: $1\mem[23][7:0]
+   186/210: $1\mem[22][7:0]
+   187/210: $1\mem[21][7:0]
+   188/210: $1\mem[20][7:0]
+   189/210: $1\mem[19][7:0]
+   190/210: $1\mem[18][7:0]
+   191/210: $1\mem[17][7:0]
+   192/210: $1\mem[16][7:0]
+   193/210: $1\mem[15][7:0]
+   194/210: $1\mem[14][7:0]
+   195/210: $1\mem[13][7:0]
+   196/210: $1\mem[12][7:0]
+   197/210: $1\mem[11][7:0]
+   198/210: $1\mem[10][7:0]
+   199/210: $1\mem[9][7:0]
+   200/210: $1\mem[8][7:0]
+   201/210: $1\mem[7][7:0]
+   202/210: $1\mem[6][7:0]
+   203/210: $1\mem[5][7:0]
+   204/210: $1\mem[4][7:0]
+   205/210: $1\mem[3][7:0]
+   206/210: $1\mem[2][7:0]
+   207/210: $1\mem[1][7:0]
+   208/210: $1\mem[0][7:0]
+   209/210: $1\nv[7:0]
+   210/210: $0\rdata[7:0]
+
+7.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\dr_bit' from process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:101$366'.
+No latch inferred for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\wr_v$func$rtl/mbist_ctrl.v:42$226.$result' from process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$319'.
+No latch inferred for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\wr_v$func$rtl/mbist_ctrl.v:42$234.$result' from process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$319'.
+No latch inferred for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\wr_v$func$rtl/mbist_ctrl.v:42$234.e' from process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$319'.
+No latch inferred for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\dir_up$func$rtl/mbist_ctrl.v:34$225.$result' from process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$314'.
+No latch inferred for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\dir_up$func$rtl/mbist_ctrl.v:34$233.$result' from process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$314'.
+No latch inferred for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\dir_up$func$rtl/mbist_ctrl.v:34$233.e' from process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$314'.
+No latch inferred for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\i' from process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:0$224'.
+
+7.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\dft_top.\busy_s' using process `\dft_top.$proc$rtl/dft_top.v:27$192'.
+  created $adff cell `$procdff$6000' with positive edge clock and negative level reset.
+Creating register for signal `\dft_top.\done_s' using process `\dft_top.$proc$rtl/dft_top.v:27$192'.
+  created $adff cell `$procdff$6001' with positive edge clock and negative level reset.
+Creating register for signal `\dft_top.\fail_s' using process `\dft_top.$proc$rtl/dft_top.v:27$192'.
+  created $adff cell `$procdff$6002' with positive edge clock and negative level reset.
+Creating register for signal `\dft_top.\go_s' using process `\dft_top.$proc$rtl/dft_top.v:21$188'.
+  created $adff cell `$procdff$6003' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\tdo' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:107$367'.
+  created $adff cell `$procdff$6004' with negative edge clock and negative level reset.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\tdo_en' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:107$367'.
+  created $adff cell `$procdff$6005' with negative edge clock and negative level reset.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\mbist_go' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:84$359'.
+  created $adff cell `$procdff$6006' with negative edge clock and negative level reset.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\bsr_up' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:84$359'.
+  created $adff cell `$procdff$6007' with negative edge clock and negative level reset.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\extest_mode' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:84$359'.
+  created $adff cell `$procdff$6008' with negative edge clock and negative level reset.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\bypass_r' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:70$356'.
+  created $dff cell `$procdff$6009' with positive edge clock.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\id_sr' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:70$356'.
+  created $dff cell `$procdff$6010' with positive edge clock.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\bsr_sr' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:70$356'.
+  created $dff cell `$procdff$6011' with positive edge clock.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\mb_sr' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:70$356'.
+  created $dff cell `$procdff$6012' with positive edge clock.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\ir' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:53$347'.
+  created $adff cell `$procdff$6013' with negative edge clock and negative level reset.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\ir_sr' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:49$344'.
+  created $dff cell `$procdff$6014' with positive edge clock.
+Creating register for signal `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.\state' using process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:24$326'.
+  created $adff cell `$procdff$6015' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\addr' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6016' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\done' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6017' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\fail' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6018' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\fail_addr' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6019' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\st' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6020' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\elem' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6021' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\exp_v$func$rtl/mbist_ctrl.v:57$227.$result' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6022' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\exp_v$func$rtl/mbist_ctrl.v:57$227.e' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6023' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\has_wr$func$rtl/mbist_ctrl.v:61$228.$result' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6024' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\has_wr$func$rtl/mbist_ctrl.v:61$228.e' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6025' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\dir_up$func$rtl/mbist_ctrl.v:66$229.$result' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6026' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\dir_up$func$rtl/mbist_ctrl.v:66$229.e' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6027' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\has_rd$func$rtl/mbist_ctrl.v:67$230.$result' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6028' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\has_rd$func$rtl/mbist_ctrl.v:67$230.e' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6029' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\dir_up$func$rtl/mbist_ctrl.v:72$231.$result' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6030' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\dir_up$func$rtl/mbist_ctrl.v:72$231.e' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6031' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\has_rd$func$rtl/mbist_ctrl.v:73$232.$result' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6032' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.\has_rd$func$rtl/mbist_ctrl.v:73$232.e' using process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+  created $adff cell `$procdff$6033' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\rdata' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6034' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\nv' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6035' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[0]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6036' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[1]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6037' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[2]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6038' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[3]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6039' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[4]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6040' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[5]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6041' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[6]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6042' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[7]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6043' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[8]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6044' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[9]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6045' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[10]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6046' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[11]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6047' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[12]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6048' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[13]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6049' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[14]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6050' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[15]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6051' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[16]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6052' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[17]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6053' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[18]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6054' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[19]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6055' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[20]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6056' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[21]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6057' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[22]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6058' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[23]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6059' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[24]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6060' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[25]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6061' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[26]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6062' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[27]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6063' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[28]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6064' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[29]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6065' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[30]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6066' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[31]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6067' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[32]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6068' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[33]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6069' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[34]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6070' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[35]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6071' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[36]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6072' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[37]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6073' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[38]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6074' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[39]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6075' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[40]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6076' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[41]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6077' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[42]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6078' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[43]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6079' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[44]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6080' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[45]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6081' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[46]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6082' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[47]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6083' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[48]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6084' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[49]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6085' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[50]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6086' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[51]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6087' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[52]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6088' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[53]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6089' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[54]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6090' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[55]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6091' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[56]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6092' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[57]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6093' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[58]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6094' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[59]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6095' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[60]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6096' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[61]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6097' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[62]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6098' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.\mem[63]' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6099' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$mem2reg_rd$\mem$rtl/sram_model.v:39$194_ADDR' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6100' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$mem2reg_rd$\mem$rtl/sram_model.v:39$194_DATA' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6101' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$mem2reg_wr$\mem$rtl/sram_model.v:41$195_ADDR' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6102' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$mem2reg_wr$\mem$rtl/sram_model.v:41$195_DATA' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6103' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$mem2reg_rd$\mem$rtl/sram_model.v:43$196_ADDR' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6104' with positive edge clock.
+Creating register for signal `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$mem2reg_rd$\mem$rtl/sram_model.v:43$196_DATA' using process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+  created $dff cell `$procdff$6105' with positive edge clock.
+
+7.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+7.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `dft_top.$proc$rtl/dft_top.v:27$192'.
+Removing empty process `dft_top.$proc$rtl/dft_top.v:21$188'.
+Removing empty process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:107$367'.
+Found and cleaned up 3 empty switches in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:101$366'.
+Removing empty process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:101$366'.
+Found and cleaned up 5 empty switches in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:84$359'.
+Removing empty process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:84$359'.
+Found and cleaned up 2 empty switches in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:70$356'.
+Removing empty process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:70$356'.
+Found and cleaned up 2 empty switches in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:53$347'.
+Removing empty process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:53$347'.
+Found and cleaned up 2 empty switches in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:49$344'.
+Removing empty process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:49$344'.
+Found and cleaned up 1 empty switch in `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:24$326'.
+Removing empty process `$paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.$proc$rtl/jtag_tap.v:24$326'.
+Removing empty process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$319'.
+Removing empty process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:0$314'.
+Found and cleaned up 6 empty switches in `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+Removing empty process `$paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.$proc$rtl/mbist_ctrl.v:44$245'.
+Removing empty process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:0$224'.
+Found and cleaned up 6 empty switches in `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+Removing empty process `$paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.$proc$rtl/sram_model.v:27$197'.
+Cleaned up 27 empty switches.
+
+7.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+Optimizing module $paramod$c32243ca1a9614fa830d31fabe2eedecbb0b6765\mem_bist_wrap.
+Optimizing module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+<suppressed ~3 debug messages>
+Optimizing module $paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.
+<suppressed ~26 debug messages>
+Optimizing module $paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.
+<suppressed ~69 debug messages>
+
+8. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod$c32243ca1a9614fa830d31fabe2eedecbb0b6765\mem_bist_wrap.
+Deleting now unused module $paramod\jtag_tap\BSR_LEN=s32'00000000000000000000000000001000.
+Deleting now unused module $paramod$c39cecdc298be2b0531dd40c5e71924c3a844c71\mbist_ctrl.
+Deleting now unused module $paramod$724fb0d9d7775e33c05dc058d1be708af6844807\sram_model.
+<suppressed ~4 debug messages>
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+<suppressed ~12726 debug messages>
+Removed a total of 4242 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5743.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5743.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5741.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5741.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5737.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5731.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5725.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5719.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5713.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5707.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5701.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5695.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5689.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5683.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5677.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5671.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5665.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3569.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3567.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5659.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5653.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5647.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2149.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2147.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5641.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4847.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4845.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5635.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5629.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5623.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2859.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2857.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4208.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4206.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5617.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5611.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5605.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1368.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1366.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5599.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5593.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5587.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5581.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5575.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5569.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5563.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5557.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5551.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5545.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5539.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5533.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5527.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5521.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5515.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5509.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5503.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5497.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5491.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3498.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3496.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5485.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2078.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2076.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5479.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5473.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5467.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5461.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5455.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5449.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2788.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2786.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4776.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4774.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1297.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1295.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5443.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5437.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4137.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4135.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5431.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5425.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5419.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5413.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5407.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5401.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5395.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5389.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5383.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5377.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5371.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5365.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5359.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2007.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2005.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3427.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3425.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1226.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1224.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2717.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2715.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4705.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4703.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4066.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4064.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1936.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1934.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5282.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5280.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5273.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5271.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3356.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3354.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1155.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1153.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2646.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2644.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3995.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3993.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4634.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4632.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1865.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1863.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1084.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1082.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5753.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5753.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3285.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3283.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2575.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2573.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5202.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5200.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1439.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1437.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5749.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5749.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3924.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3922.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4563.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4561.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5747.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5747.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1794.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1792.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$585.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$585.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1013.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1011.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$580.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$580.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$575.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$575.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$570.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$570.
+    dead port 1/2 on $mux $flatten\u_tap.$procmux$384.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$565.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$565.
+    dead port 1/2 on $mux $flatten\u_tap.$procmux$387.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$562.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$562.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$559.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$559.
+    dead port 1/2 on $mux $flatten\u_tap.$procmux$393.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$556.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$556.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3214.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3212.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$553.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$553.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2504.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2502.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$550.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$550.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$547.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$547.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$544.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$544.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$541.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$541.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$539.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$539.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$535.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$535.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$533.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$533.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5131.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5129.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$529.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$529.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$527.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$527.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$523.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$523.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$521.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$521.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$517.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$517.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$515.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$515.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$511.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$511.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$509.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$509.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$505.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$505.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3853.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3851.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$503.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$503.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$499.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$499.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1723.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1721.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$497.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$497.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$493.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$493.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$942.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$940.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4492.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4490.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$491.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$491.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$488.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$488.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$484.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$484.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$482.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$482.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$479.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$479.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$475.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$475.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$473.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$473.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$470.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$470.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$466.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$466.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$464.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$464.
+    dead port 1/2 on $mux $flatten\u_mem.\u_bist.$procmux$461.
+    dead port 2/2 on $mux $flatten\u_mem.\u_bist.$procmux$461.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3143.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2433.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2431.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3141.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5060.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5058.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1652.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1650.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$871.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$869.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3782.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3780.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4421.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4419.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2362.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2360.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3072.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3070.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$800.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$798.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1581.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1579.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4989.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4987.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3711.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3709.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4350.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4348.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2291.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2289.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3001.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2999.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$729.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$727.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1510.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$1508.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3640.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$3638.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4918.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4916.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2220.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2218.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4279.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$4277.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5797.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5797.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5794.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5794.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2930.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$2928.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5791.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5791.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5788.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5788.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5785.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5785.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5782.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5782.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5779.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5779.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5777.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5777.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5773.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5773.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5771.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5771.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5767.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5761.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5761.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5759.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5759.
+    dead port 1/2 on $mux $flatten\u_mem.\u_ram.$procmux$5755.
+    dead port 2/2 on $mux $flatten\u_mem.\u_ram.$procmux$5755.
+Removed 316 multiplexer ports.
+<suppressed ~92 debug messages>
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3360: { $flatten\u_mem.\u_ram.$procmux$5323_CMP $auto$opt_reduce.cc:134:opt_pmux$6107 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2082: { $flatten\u_mem.\u_ram.$procmux$5305_CMP $auto$opt_reduce.cc:134:opt_pmux$6109 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1159: { $flatten\u_mem.\u_ram.$procmux$5292_CMP $auto$opt_reduce.cc:134:opt_pmux$6111 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2650: { $flatten\u_mem.\u_ram.$procmux$5313_CMP $auto$opt_reduce.cc:134:opt_pmux$6113 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1372: { $flatten\u_mem.\u_ram.$procmux$5295_CMP $auto$opt_reduce.cc:134:opt_pmux$6115 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4638: { $flatten\u_mem.\u_ram.$procmux$5341_CMP $auto$opt_reduce.cc:134:opt_pmux$6117 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3999: { $flatten\u_mem.\u_ram.$procmux$5332_CMP $auto$opt_reduce.cc:134:opt_pmux$6119 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1869: { $flatten\u_mem.\u_ram.$procmux$5302_CMP $auto$opt_reduce.cc:134:opt_pmux$6121 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1088: { $flatten\u_mem.\u_ram.$procmux$5291_CMP $auto$opt_reduce.cc:134:opt_pmux$6123 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4780: { $flatten\u_mem.\u_ram.$procmux$5343_CMP $auto$opt_reduce.cc:134:opt_pmux$6125 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3289: { $flatten\u_mem.\u_ram.$procmux$5322_CMP $auto$opt_reduce.cc:134:opt_pmux$6127 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2792: { $flatten\u_mem.\u_ram.$procmux$5315_CMP $auto$opt_reduce.cc:134:opt_pmux$6129 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2153: { $flatten\u_mem.\u_ram.$procmux$5306_CMP $auto$opt_reduce.cc:134:opt_pmux$6131 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2579: { $flatten\u_mem.\u_ram.$procmux$5312_CMP $auto$opt_reduce.cc:134:opt_pmux$6133 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4851: { $flatten\u_mem.\u_ram.$procmux$5344_CMP $auto$opt_reduce.cc:134:opt_pmux$6135 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$5206: { $flatten\u_mem.\u_ram.$procmux$5349_CMP $auto$opt_reduce.cc:134:opt_pmux$6137 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1301: { $flatten\u_mem.\u_ram.$procmux$5294_CMP $auto$opt_reduce.cc:134:opt_pmux$6139 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3928: { $flatten\u_mem.\u_ram.$procmux$5331_CMP $auto$opt_reduce.cc:134:opt_pmux$6141 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4567: { $flatten\u_mem.\u_ram.$eq$rtl/sram_model.v:31$216_Y $auto$opt_reduce.cc:134:opt_pmux$6143 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4141: { $flatten\u_mem.\u_ram.$procmux$5334_CMP $auto$opt_reduce.cc:134:opt_pmux$6145 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1798: { $flatten\u_mem.\u_ram.$procmux$5301_CMP $auto$opt_reduce.cc:134:opt_pmux$6147 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1017: { $flatten\u_mem.\u_ram.$procmux$5290_CMP $auto$opt_reduce.cc:134:opt_pmux$6149 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3218: { $flatten\u_mem.\u_ram.$procmux$5321_CMP $auto$opt_reduce.cc:134:opt_pmux$6151 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2508: { $flatten\u_mem.\u_ram.$procmux$5311_CMP $auto$opt_reduce.cc:134:opt_pmux$6153 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$5135: { $flatten\u_mem.\u_ram.$procmux$5348_CMP $auto$opt_reduce.cc:134:opt_pmux$6155 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3857: { $flatten\u_mem.\u_ram.$procmux$5330_CMP $auto$opt_reduce.cc:134:opt_pmux$6157 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2011: { $flatten\u_mem.\u_ram.$procmux$5304_CMP $auto$opt_reduce.cc:134:opt_pmux$6159 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1727: { $flatten\u_mem.\u_ram.$procmux$5300_CMP $auto$opt_reduce.cc:134:opt_pmux$6161 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3573: { $flatten\u_mem.\u_ram.$procmux$5326_CMP $auto$opt_reduce.cc:134:opt_pmux$6163 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4496: { $flatten\u_mem.\u_ram.$procmux$5339_CMP $auto$opt_reduce.cc:134:opt_pmux$6165 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$946: { $flatten\u_mem.\u_ram.$procmux$5289_CMP $auto$opt_reduce.cc:134:opt_pmux$6167 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3431: { $flatten\u_mem.\u_ram.$procmux$5324_CMP $auto$opt_reduce.cc:134:opt_pmux$6169 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2863: { $flatten\u_mem.\u_ram.$procmux$5316_CMP $auto$opt_reduce.cc:134:opt_pmux$6171 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1230: { $flatten\u_mem.\u_ram.$procmux$5293_CMP $auto$opt_reduce.cc:134:opt_pmux$6173 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4212: { $flatten\u_mem.\u_ram.$procmux$5335_CMP $auto$opt_reduce.cc:134:opt_pmux$6175 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3147: { $flatten\u_mem.\u_ram.$procmux$5320_CMP $auto$opt_reduce.cc:134:opt_pmux$6177 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2437: { $flatten\u_mem.\u_ram.$procmux$5310_CMP $auto$opt_reduce.cc:134:opt_pmux$6179 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2721: { $flatten\u_mem.\u_ram.$procmux$5314_CMP $auto$opt_reduce.cc:134:opt_pmux$6181 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$5064: { $flatten\u_mem.\u_ram.$procmux$5347_CMP $auto$opt_reduce.cc:134:opt_pmux$6183 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1656: { $flatten\u_mem.\u_ram.$procmux$5299_CMP $auto$opt_reduce.cc:134:opt_pmux$6185 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$875: { $flatten\u_mem.\u_ram.$procmux$5288_CMP $auto$opt_reduce.cc:134:opt_pmux$6187 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3786: { $flatten\u_mem.\u_ram.$procmux$5329_CMP $auto$opt_reduce.cc:134:opt_pmux$6189 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4425: { $flatten\u_mem.\u_ram.$procmux$5338_CMP $auto$opt_reduce.cc:134:opt_pmux$6191 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4709: { $flatten\u_mem.\u_ram.$procmux$5342_CMP $auto$opt_reduce.cc:134:opt_pmux$6193 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2366: { $flatten\u_mem.\u_ram.$procmux$5309_CMP $auto$opt_reduce.cc:134:opt_pmux$6195 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3076: { $flatten\u_mem.\u_ram.$procmux$5319_CMP $auto$opt_reduce.cc:134:opt_pmux$6197 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4070: { $flatten\u_mem.\u_ram.$procmux$5333_CMP $auto$opt_reduce.cc:134:opt_pmux$6199 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$804: { $auto$opt_reduce.cc:134:opt_pmux$6201 $flatten\u_mem.\u_ram.$procmux$5287_CMP }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1585: { $flatten\u_mem.\u_ram.$procmux$5298_CMP $auto$opt_reduce.cc:134:opt_pmux$6203 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4993: { $flatten\u_mem.\u_ram.$procmux$5346_CMP $auto$opt_reduce.cc:134:opt_pmux$6205 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3715: { $flatten\u_mem.\u_ram.$procmux$5328_CMP $auto$opt_reduce.cc:134:opt_pmux$6207 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4354: { $flatten\u_mem.\u_ram.$procmux$5337_CMP $auto$opt_reduce.cc:134:opt_pmux$6209 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2295: { $flatten\u_mem.\u_ram.$procmux$5308_CMP $auto$opt_reduce.cc:134:opt_pmux$6211 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3005: { $flatten\u_mem.\u_ram.$procmux$5318_CMP $auto$opt_reduce.cc:134:opt_pmux$6213 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$733: { $flatten\u_mem.\u_ram.$procmux$5350_CMP $auto$opt_reduce.cc:134:opt_pmux$6215 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1514: { $flatten\u_mem.\u_ram.$procmux$5297_CMP $auto$opt_reduce.cc:134:opt_pmux$6217 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3644: { $flatten\u_mem.\u_ram.$procmux$5327_CMP $auto$opt_reduce.cc:134:opt_pmux$6219 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4922: { $flatten\u_mem.\u_ram.$procmux$5345_CMP $auto$opt_reduce.cc:134:opt_pmux$6221 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2224: { $flatten\u_mem.\u_ram.$procmux$5307_CMP $auto$opt_reduce.cc:134:opt_pmux$6223 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4283: { $flatten\u_mem.\u_ram.$procmux$5336_CMP $auto$opt_reduce.cc:134:opt_pmux$6225 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2934: { $flatten\u_mem.\u_ram.$procmux$5317_CMP $auto$opt_reduce.cc:134:opt_pmux$6227 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1940: { $flatten\u_mem.\u_ram.$procmux$5303_CMP $auto$opt_reduce.cc:134:opt_pmux$6229 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3502: { $flatten\u_mem.\u_ram.$procmux$5325_CMP $auto$opt_reduce.cc:134:opt_pmux$6231 }
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1443: { $flatten\u_mem.\u_ram.$procmux$5296_CMP $auto$opt_reduce.cc:134:opt_pmux$6233 }
+  Optimizing cells in module \dft_top.
+Performed a total of 64 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+<suppressed ~15 debug messages>
+Removed a total of 5 cells.
+
+9.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6034 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$3$mem2reg_rd$\mem$rtl/sram_model.v:43$196_DATA[7:0]$223, Q = \u_mem.u_ram.rdata).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6035 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\nv[7:0], Q = \u_mem.u_ram.nv).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6036 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[0][7:0], Q = \u_mem.u_ram.mem[0]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6037 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[1][7:0], Q = \u_mem.u_ram.mem[1]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6038 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[2][7:0], Q = \u_mem.u_ram.mem[2]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6039 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[3][7:0], Q = \u_mem.u_ram.mem[3]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6040 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[4][7:0], Q = \u_mem.u_ram.mem[4]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6041 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[5][7:0], Q = \u_mem.u_ram.mem[5]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6042 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[6][7:0], Q = \u_mem.u_ram.mem[6]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6043 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[7][7:0], Q = \u_mem.u_ram.mem[7]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6044 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[8][7:0], Q = \u_mem.u_ram.mem[8]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6045 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[9][7:0], Q = \u_mem.u_ram.mem[9]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6046 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[10][7:0], Q = \u_mem.u_ram.mem[10]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6047 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[11][7:0], Q = \u_mem.u_ram.mem[11]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6048 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[12][7:0], Q = \u_mem.u_ram.mem[12]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6049 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[13][7:0], Q = \u_mem.u_ram.mem[13]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6050 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[14][7:0], Q = \u_mem.u_ram.mem[14]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6051 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[15][7:0], Q = \u_mem.u_ram.mem[15]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6052 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[16][7:0], Q = \u_mem.u_ram.mem[16]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6053 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[17][7:0], Q = \u_mem.u_ram.mem[17]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6054 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[18][7:0], Q = \u_mem.u_ram.mem[18]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6055 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[19][7:0], Q = \u_mem.u_ram.mem[19]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6056 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[20][7:0], Q = \u_mem.u_ram.mem[20]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6057 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[21][7:0], Q = \u_mem.u_ram.mem[21]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6058 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[22][7:0], Q = \u_mem.u_ram.mem[22]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6059 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[23][7:0], Q = \u_mem.u_ram.mem[23]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6060 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[24][7:0], Q = \u_mem.u_ram.mem[24]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6061 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[25][7:0], Q = \u_mem.u_ram.mem[25]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6062 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[26][7:0], Q = \u_mem.u_ram.mem[26]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6063 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[27][7:0], Q = \u_mem.u_ram.mem[27]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6064 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[28][7:0], Q = \u_mem.u_ram.mem[28]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6065 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[29][7:0], Q = \u_mem.u_ram.mem[29]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6066 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[30][7:0], Q = \u_mem.u_ram.mem[30]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6067 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[31][7:0], Q = \u_mem.u_ram.mem[31]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6068 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[32][7:0], Q = \u_mem.u_ram.mem[32]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6069 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[33][7:0], Q = \u_mem.u_ram.mem[33]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6070 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[34][7:0], Q = \u_mem.u_ram.mem[34]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6071 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[35][7:0], Q = \u_mem.u_ram.mem[35]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6072 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[36][7:0], Q = \u_mem.u_ram.mem[36]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6073 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[37][7:0], Q = \u_mem.u_ram.mem[37]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6074 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[38][7:0], Q = \u_mem.u_ram.mem[38]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6075 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[39][7:0], Q = \u_mem.u_ram.mem[39]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6076 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[40][7:0], Q = \u_mem.u_ram.mem[40]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6077 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[41][7:0], Q = \u_mem.u_ram.mem[41]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6078 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[42][7:0], Q = \u_mem.u_ram.mem[42]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6079 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[43][7:0], Q = \u_mem.u_ram.mem[43]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6080 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[44][7:0], Q = \u_mem.u_ram.mem[44]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6081 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[45][7:0], Q = \u_mem.u_ram.mem[45]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6082 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[46][7:0], Q = \u_mem.u_ram.mem[46]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6083 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[47][7:0], Q = \u_mem.u_ram.mem[47]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6084 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[48][7:0], Q = \u_mem.u_ram.mem[48]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6085 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[49][7:0], Q = \u_mem.u_ram.mem[49]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6086 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[50][7:0], Q = \u_mem.u_ram.mem[50]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6087 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[51][7:0], Q = \u_mem.u_ram.mem[51]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6088 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[52][7:0], Q = \u_mem.u_ram.mem[52]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6089 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[53][7:0], Q = \u_mem.u_ram.mem[53]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6090 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[54][7:0], Q = \u_mem.u_ram.mem[54]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6091 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[55][7:0], Q = \u_mem.u_ram.mem[55]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6092 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[56][7:0], Q = \u_mem.u_ram.mem[56]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6093 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[57][7:0], Q = \u_mem.u_ram.mem[57]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6094 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[58][7:0], Q = \u_mem.u_ram.mem[58]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6095 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[59][7:0], Q = \u_mem.u_ram.mem[59]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6096 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[60][7:0], Q = \u_mem.u_ram.mem[60]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6097 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[61][7:0], Q = \u_mem.u_ram.mem[61]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6098 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[62][7:0], Q = \u_mem.u_ram.mem[62]).
+Adding EN signal on $flatten\u_mem.\u_ram.$procdff$6099 ($dff) from module dft_top (D = $flatten\u_mem.\u_ram.$2\mem[63][7:0], Q = \u_mem.u_ram.mem[63]).
+Adding EN signal on $flatten\u_mem.\u_bist.$procdff$6016 ($adff) from module dft_top (D = $flatten\u_mem.\u_bist.$procmux$655_Y, Q = \u_mem.u_bist.addr).
+Adding EN signal on $flatten\u_mem.\u_bist.$procdff$6017 ($adff) from module dft_top (D = $flatten\u_mem.\u_bist.$procmux$643_Y, Q = \u_mem.u_bist.done).
+Adding EN signal on $flatten\u_mem.\u_bist.$procdff$6018 ($adff) from module dft_top (D = $flatten\u_mem.\u_bist.$procmux$631_Y, Q = \u_mem.u_bist.fail).
+Adding EN signal on $flatten\u_mem.\u_bist.$procdff$6019 ($adff) from module dft_top (D = $flatten\u_mem.\u_bist.$procmux$621_Y, Q = \u_mem.u_bist.fail_addr).
+Adding EN signal on $flatten\u_mem.\u_bist.$procdff$6020 ($adff) from module dft_top (D = $flatten\u_mem.\u_bist.$procmux$606_Y, Q = \u_mem.u_bist.st).
+Adding EN signal on $flatten\u_mem.\u_bist.$procdff$6021 ($adff) from module dft_top (D = $flatten\u_mem.\u_bist.$procmux$594_Y, Q = \u_mem.u_bist.elem).
+Adding SRST signal on $flatten\u_tap.$procdff$6014 ($dff) from module dft_top (D = $flatten\u_tap.$procmux$437_Y, Q = \u_tap.ir_sr, rval = 4'0001).
+Adding EN signal on $auto$ff.cc:266:slice$6358 ($sdff) from module dft_top (D = { \u_tap.tdi \u_tap.ir_sr [3:1] }, Q = \u_tap.ir_sr).
+Adding EN signal on $flatten\u_tap.$procdff$6013 ($adff) from module dft_top (D = $flatten\u_tap.$procmux$435_Y, Q = \u_tap.ir).
+Adding EN signal on $flatten\u_tap.$procdff$6012 ($dff) from module dft_top (D = $flatten\u_tap.$procmux$415_Y, Q = \u_tap.mb_sr).
+Adding EN signal on $flatten\u_tap.$procdff$6011 ($dff) from module dft_top (D = $flatten\u_tap.$procmux$420_Y, Q = \u_tap.bsr_sr).
+Adding SRST signal on $flatten\u_tap.$procdff$6010 ($dff) from module dft_top (D = $flatten\u_tap.$procmux$422_Y, Q = \u_tap.id_sr, rval = 502726657).
+Adding EN signal on $auto$ff.cc:266:slice$6369 ($sdff) from module dft_top (D = { \u_tap.tdi \u_tap.id_sr [31:1] }, Q = \u_tap.id_sr).
+Adding SRST signal on $flatten\u_tap.$procdff$6009 ($dff) from module dft_top (D = $flatten\u_tap.$procmux$427_Y, Q = \u_tap.bypass_r, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$6371 ($sdff) from module dft_top (D = \u_tap.tdi, Q = \u_tap.bypass_r).
+Adding EN signal on $flatten\u_tap.$procdff$6008 ($adff) from module dft_top (D = $flatten\u_tap.$procmux$400_Y, Q = \u_tap.extest_mode).
+Adding EN signal on $flatten\u_tap.$procdff$6007 ($adff) from module dft_top (D = \u_tap.bsr_sr, Q = \u_tap.bsr_up).
+Setting constant 1-bit at position 0 on $flatten\u_mem.\u_bist.$procdff$6033 ($adff) from module dft_top.
+Setting constant 1-bit at position 1 on $flatten\u_mem.\u_bist.$procdff$6033 ($adff) from module dft_top.
+Setting constant 1-bit at position 2 on $flatten\u_mem.\u_bist.$procdff$6033 ($adff) from module dft_top.
+Setting constant 1-bit at position 0 on $flatten\u_mem.\u_bist.$procdff$6032 ($adff) from module dft_top.
+Setting constant 1-bit at position 0 on $flatten\u_mem.\u_ram.$procdff$6102 ($dff) from module dft_top.
+Setting constant 1-bit at position 1 on $flatten\u_mem.\u_ram.$procdff$6102 ($dff) from module dft_top.
+Setting constant 1-bit at position 2 on $flatten\u_mem.\u_ram.$procdff$6102 ($dff) from module dft_top.
+Setting constant 1-bit at position 3 on $flatten\u_mem.\u_ram.$procdff$6102 ($dff) from module dft_top.
+Setting constant 1-bit at position 4 on $flatten\u_mem.\u_ram.$procdff$6102 ($dff) from module dft_top.
+Setting constant 1-bit at position 5 on $flatten\u_mem.\u_ram.$procdff$6102 ($dff) from module dft_top.
+Setting constant 1-bit at position 0 on $flatten\u_mem.\u_ram.$procdff$6101 ($dff) from module dft_top.
+Setting constant 1-bit at position 1 on $flatten\u_mem.\u_ram.$procdff$6101 ($dff) from module dft_top.
+Setting constant 1-bit at position 2 on $flatten\u_mem.\u_ram.$procdff$6101 ($dff) from module dft_top.
+Setting constant 1-bit at position 3 on $flatten\u_mem.\u_ram.$procdff$6101 ($dff) from module dft_top.
+Setting constant 1-bit at position 4 on $flatten\u_mem.\u_ram.$procdff$6101 ($dff) from module dft_top.
+Setting constant 1-bit at position 5 on $flatten\u_mem.\u_ram.$procdff$6101 ($dff) from module dft_top.
+Setting constant 1-bit at position 6 on $flatten\u_mem.\u_ram.$procdff$6101 ($dff) from module dft_top.
+Setting constant 1-bit at position 7 on $flatten\u_mem.\u_ram.$procdff$6101 ($dff) from module dft_top.
+
+9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+Removed 95 unused cells and 5453 unused wires.
+<suppressed ~100 debug messages>
+
+9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+<suppressed ~8 debug messages>
+
+9.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+9.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~84 debug messages>
+
+9.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+    New ctrl vector for $pmux cell $flatten\u_tap.$procmux$442: { $flatten\u_tap.$eq$rtl/jtag_tap.v:55$349_Y $flatten\u_tap.$procmux$456_CMP $auto$opt_reduce.cc:134:opt_pmux$6384 $flatten\u_tap.$procmux$453_CMP $flatten\u_tap.$procmux$452_CMP $flatten\u_tap.$procmux$451_CMP $flatten\u_tap.$procmux$449_CMP $auto$opt_reduce.cc:134:opt_pmux$6382 $flatten\u_tap.$procmux$446_CMP $flatten\u_tap.$procmux$445_CMP $flatten\u_tap.$procmux$444_CMP $auto$opt_reduce.cc:134:opt_pmux$6380 }
+  Optimizing cells in module \dft_top.
+Performed a total of 1 changes.
+
+9.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+<suppressed ~33 debug messages>
+Removed a total of 11 cells.
+
+9.13. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $auto$ff.cc:266:slice$6245 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[5][7:0], Q = \u_mem.u_ram.mem[5]).
+Adding EN signal on $auto$ff.cc:266:slice$6244 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[4][7:0], Q = \u_mem.u_ram.mem[4]).
+Adding EN signal on $auto$ff.cc:266:slice$6243 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[3][7:0], Q = \u_mem.u_ram.mem[3]).
+Adding EN signal on $auto$ff.cc:266:slice$6242 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[2][7:0], Q = \u_mem.u_ram.mem[2]).
+Adding EN signal on $auto$ff.cc:266:slice$6241 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[1][7:0], Q = \u_mem.u_ram.mem[1]).
+Adding EN signal on $auto$ff.cc:266:slice$6240 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[0][7:0], Q = \u_mem.u_ram.mem[0]).
+Adding EN signal on $auto$ff.cc:266:slice$6303 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[63][7:0], Q = \u_mem.u_ram.mem[63]).
+Adding EN signal on $auto$ff.cc:266:slice$6302 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[62][7:0], Q = \u_mem.u_ram.mem[62]).
+Adding EN signal on $auto$ff.cc:266:slice$6301 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[61][7:0], Q = \u_mem.u_ram.mem[61]).
+Adding EN signal on $auto$ff.cc:266:slice$6300 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[60][7:0], Q = \u_mem.u_ram.mem[60]).
+Adding EN signal on $auto$ff.cc:266:slice$6299 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[59][7:0], Q = \u_mem.u_ram.mem[59]).
+Adding EN signal on $auto$ff.cc:266:slice$6298 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[58][7:0], Q = \u_mem.u_ram.mem[58]).
+Adding EN signal on $auto$ff.cc:266:slice$6297 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[57][7:0], Q = \u_mem.u_ram.mem[57]).
+Adding EN signal on $auto$ff.cc:266:slice$6296 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[56][7:0], Q = \u_mem.u_ram.mem[56]).
+Adding EN signal on $auto$ff.cc:266:slice$6295 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[55][7:0], Q = \u_mem.u_ram.mem[55]).
+Adding EN signal on $auto$ff.cc:266:slice$6294 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[54][7:0], Q = \u_mem.u_ram.mem[54]).
+Adding EN signal on $auto$ff.cc:266:slice$6293 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[53][7:0], Q = \u_mem.u_ram.mem[53]).
+Adding EN signal on $auto$ff.cc:266:slice$6292 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[52][7:0], Q = \u_mem.u_ram.mem[52]).
+Adding EN signal on $auto$ff.cc:266:slice$6291 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[51][7:0], Q = \u_mem.u_ram.mem[51]).
+Adding EN signal on $auto$ff.cc:266:slice$6290 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[50][7:0], Q = \u_mem.u_ram.mem[50]).
+Adding EN signal on $auto$ff.cc:266:slice$6289 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[49][7:0], Q = \u_mem.u_ram.mem[49]).
+Adding EN signal on $auto$ff.cc:266:slice$6288 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[48][7:0], Q = \u_mem.u_ram.mem[48]).
+Adding EN signal on $auto$ff.cc:266:slice$6287 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[47][7:0], Q = \u_mem.u_ram.mem[47]).
+Adding EN signal on $auto$ff.cc:266:slice$6286 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[46][7:0], Q = \u_mem.u_ram.mem[46]).
+Adding EN signal on $auto$ff.cc:266:slice$6285 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[45][7:0], Q = \u_mem.u_ram.mem[45]).
+Adding EN signal on $auto$ff.cc:266:slice$6284 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[44][7:0], Q = \u_mem.u_ram.mem[44]).
+Adding EN signal on $auto$ff.cc:266:slice$6283 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[43][7:0], Q = \u_mem.u_ram.mem[43]).
+Adding EN signal on $auto$ff.cc:266:slice$6282 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[42][7:0], Q = \u_mem.u_ram.mem[42]).
+Adding EN signal on $auto$ff.cc:266:slice$6281 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[41][7:0], Q = \u_mem.u_ram.mem[41]).
+Adding EN signal on $auto$ff.cc:266:slice$6280 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[40][7:0], Q = \u_mem.u_ram.mem[40]).
+Adding EN signal on $auto$ff.cc:266:slice$6279 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[39][7:0], Q = \u_mem.u_ram.mem[39]).
+Adding EN signal on $auto$ff.cc:266:slice$6278 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[38][7:0], Q = \u_mem.u_ram.mem[38]).
+Adding EN signal on $auto$ff.cc:266:slice$6277 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[37][7:0], Q = \u_mem.u_ram.mem[37]).
+Adding EN signal on $auto$ff.cc:266:slice$6276 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[36][7:0], Q = \u_mem.u_ram.mem[36]).
+Adding EN signal on $auto$ff.cc:266:slice$6275 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[35][7:0], Q = \u_mem.u_ram.mem[35]).
+Adding EN signal on $auto$ff.cc:266:slice$6274 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[34][7:0], Q = \u_mem.u_ram.mem[34]).
+Adding EN signal on $auto$ff.cc:266:slice$6273 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[33][7:0], Q = \u_mem.u_ram.mem[33]).
+Adding EN signal on $auto$ff.cc:266:slice$6272 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[32][7:0], Q = \u_mem.u_ram.mem[32]).
+Adding EN signal on $auto$ff.cc:266:slice$6271 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[31][7:0], Q = \u_mem.u_ram.mem[31]).
+Adding EN signal on $auto$ff.cc:266:slice$6270 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[30][7:0], Q = \u_mem.u_ram.mem[30]).
+Adding EN signal on $auto$ff.cc:266:slice$6269 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[29][7:0], Q = \u_mem.u_ram.mem[29]).
+Adding EN signal on $auto$ff.cc:266:slice$6268 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[28][7:0], Q = \u_mem.u_ram.mem[28]).
+Adding EN signal on $auto$ff.cc:266:slice$6267 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[27][7:0], Q = \u_mem.u_ram.mem[27]).
+Adding EN signal on $auto$ff.cc:266:slice$6266 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[26][7:0], Q = \u_mem.u_ram.mem[26]).
+Adding EN signal on $auto$ff.cc:266:slice$6265 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[25][7:0], Q = \u_mem.u_ram.mem[25]).
+Adding EN signal on $auto$ff.cc:266:slice$6264 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[24][7:0], Q = \u_mem.u_ram.mem[24]).
+Adding EN signal on $auto$ff.cc:266:slice$6263 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[23][7:0], Q = \u_mem.u_ram.mem[23]).
+Adding EN signal on $auto$ff.cc:266:slice$6262 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[22][7:0], Q = \u_mem.u_ram.mem[22]).
+Adding EN signal on $auto$ff.cc:266:slice$6261 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[21][7:0], Q = \u_mem.u_ram.mem[21]).
+Adding EN signal on $auto$ff.cc:266:slice$6260 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[20][7:0], Q = \u_mem.u_ram.mem[20]).
+Adding EN signal on $auto$ff.cc:266:slice$6259 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[19][7:0], Q = \u_mem.u_ram.mem[19]).
+Adding EN signal on $auto$ff.cc:266:slice$6258 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[18][7:0], Q = \u_mem.u_ram.mem[18]).
+Adding EN signal on $auto$ff.cc:266:slice$6257 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[17][7:0], Q = \u_mem.u_ram.mem[17]).
+Adding EN signal on $auto$ff.cc:266:slice$6256 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[16][7:0], Q = \u_mem.u_ram.mem[16]).
+Adding EN signal on $auto$ff.cc:266:slice$6255 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[15][7:0], Q = \u_mem.u_ram.mem[15]).
+Adding EN signal on $auto$ff.cc:266:slice$6254 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[14][7:0], Q = \u_mem.u_ram.mem[14]).
+Adding EN signal on $auto$ff.cc:266:slice$6253 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[13][7:0], Q = \u_mem.u_ram.mem[13]).
+Adding EN signal on $auto$ff.cc:266:slice$6252 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[12][7:0], Q = \u_mem.u_ram.mem[12]).
+Adding EN signal on $auto$ff.cc:266:slice$6251 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[11][7:0], Q = \u_mem.u_ram.mem[11]).
+Adding EN signal on $auto$ff.cc:266:slice$6250 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$4\mem[10][7:0], Q = \u_mem.u_ram.mem[10]).
+Adding EN signal on $auto$ff.cc:266:slice$6249 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[9][7:0], Q = \u_mem.u_ram.mem[9]).
+Adding EN signal on $auto$ff.cc:266:slice$6248 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[8][7:0], Q = \u_mem.u_ram.mem[8]).
+Adding EN signal on $auto$ff.cc:266:slice$6247 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[7][7:0], Q = \u_mem.u_ram.mem[7]).
+Adding EN signal on $auto$ff.cc:266:slice$6246 ($dffe) from module dft_top (D = $flatten\u_mem.\u_ram.$3\mem[6][7:0], Q = \u_mem.u_ram.mem[6]).
+
+9.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+Removed 64 unused cells and 75 unused wires.
+<suppressed ~65 debug messages>
+
+9.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+<suppressed ~64 debug messages>
+
+9.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+9.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~85 debug messages>
+
+9.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1017: $flatten\u_mem.\u_ram.$procmux$1021_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1088: $flatten\u_mem.\u_ram.$procmux$1022_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1159: $flatten\u_mem.\u_ram.$procmux$1023_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1230: $flatten\u_mem.\u_ram.$procmux$1024_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1301: $flatten\u_mem.\u_ram.$procmux$1025_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1372: $flatten\u_mem.\u_ram.$procmux$1026_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1443: $flatten\u_mem.\u_ram.$procmux$1027_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1514: $flatten\u_mem.\u_ram.$procmux$1028_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1585: $flatten\u_mem.\u_ram.$procmux$1029_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1656: $flatten\u_mem.\u_ram.$procmux$1030_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1727: $flatten\u_mem.\u_ram.$procmux$1031_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1798: $flatten\u_mem.\u_ram.$procmux$1032_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1869: $flatten\u_mem.\u_ram.$procmux$1033_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$1940: $flatten\u_mem.\u_ram.$procmux$1034_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2011: $flatten\u_mem.\u_ram.$procmux$1035_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2082: $flatten\u_mem.\u_ram.$procmux$1036_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2153: $flatten\u_mem.\u_ram.$procmux$1037_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2224: $flatten\u_mem.\u_ram.$procmux$1038_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2295: $flatten\u_mem.\u_ram.$procmux$1039_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2366: $flatten\u_mem.\u_ram.$procmux$1040_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2437: $flatten\u_mem.\u_ram.$procmux$1041_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2508: $flatten\u_mem.\u_ram.$procmux$1042_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2579: $flatten\u_mem.\u_ram.$procmux$1043_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2650: $flatten\u_mem.\u_ram.$procmux$1044_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2721: $flatten\u_mem.\u_ram.$procmux$1045_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2792: $flatten\u_mem.\u_ram.$procmux$1046_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2863: $flatten\u_mem.\u_ram.$procmux$1047_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$2934: $flatten\u_mem.\u_ram.$procmux$1048_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3005: $flatten\u_mem.\u_ram.$procmux$1049_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3076: $flatten\u_mem.\u_ram.$procmux$1050_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3147: $flatten\u_mem.\u_ram.$procmux$1051_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3218: $flatten\u_mem.\u_ram.$procmux$1052_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3289: $flatten\u_mem.\u_ram.$procmux$1053_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3360: $flatten\u_mem.\u_ram.$procmux$1054_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3431: $flatten\u_mem.\u_ram.$procmux$1055_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3502: $flatten\u_mem.\u_ram.$procmux$1056_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3573: $flatten\u_mem.\u_ram.$procmux$1057_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3644: $flatten\u_mem.\u_ram.$procmux$1058_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3715: $flatten\u_mem.\u_ram.$procmux$1059_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3786: $flatten\u_mem.\u_ram.$procmux$1060_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3857: $flatten\u_mem.\u_ram.$procmux$1061_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3928: $flatten\u_mem.\u_ram.$procmux$1062_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$3999: $flatten\u_mem.\u_ram.$procmux$1063_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4070: $flatten\u_mem.\u_ram.$procmux$1064_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4141: $flatten\u_mem.\u_ram.$procmux$1065_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4212: $flatten\u_mem.\u_ram.$procmux$1066_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4283: $flatten\u_mem.\u_ram.$procmux$1067_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4354: $flatten\u_mem.\u_ram.$procmux$1068_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4425: $flatten\u_mem.\u_ram.$procmux$1069_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4496: $flatten\u_mem.\u_ram.$procmux$1070_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4567: $flatten\u_mem.\u_ram.$eq$rtl/sram_model.v:31$216_Y
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4638: $flatten\u_mem.\u_ram.$procmux$1001_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4709: $flatten\u_mem.\u_ram.$procmux$1002_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4780: $flatten\u_mem.\u_ram.$procmux$1003_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4851: $flatten\u_mem.\u_ram.$procmux$1004_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4922: $flatten\u_mem.\u_ram.$procmux$1005_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$4993: $flatten\u_mem.\u_ram.$procmux$1006_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$5064: $flatten\u_mem.\u_ram.$eq$rtl/sram_model.v:39$218_Y
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$5135: $flatten\u_mem.\u_ram.$procmux$1008_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$5206: $flatten\u_mem.\u_ram.$procmux$1009_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$733: $flatten\u_mem.\u_ram.$procmux$1010_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$804: $flatten\u_mem.\u_ram.$procmux$1018_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$875: $flatten\u_mem.\u_ram.$procmux$1019_CMP
+    New ctrl vector for $pmux cell $flatten\u_mem.\u_ram.$procmux$946: $flatten\u_mem.\u_ram.$procmux$1020_CMP
+  Optimizing cells in module \dft_top.
+Performed a total of 64 changes.
+
+9.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+9.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+9.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+9.23. Rerunning OPT passes. (Maybe there is more to do..)
+
+9.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~85 debug messages>
+
+9.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+Performed a total of 0 changes.
+
+9.26. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+9.27. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+9.29. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+9.30. Finished OPT passes. (There is nothing left to do.)
+
+10. Executing SYNTH pass.
+
+10.1. Executing HIERARCHY pass (managing design hierarchy).
+
+10.1.1. Analyzing design hierarchy..
+Top module:  \dft_top
+
+10.1.2. Analyzing design hierarchy..
+Top module:  \dft_top
+Removed 0 unused modules.
+
+10.2. Executing PROC pass (convert processes to netlists).
+
+10.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+10.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+10.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+10.2.4. Executing PROC_INIT pass (extract init attributes).
+
+10.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+10.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+10.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+10.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+10.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+10.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+10.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+10.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+10.5. Executing CHECK pass (checking for obvious problems).
+Checking module dft_top...
+Found and reported 0 problems.
+
+10.6. Executing OPT pass (performing simple optimizations).
+
+10.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~85 debug messages>
+
+10.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+Performed a total of 0 changes.
+
+10.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+10.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.6.9. Finished OPT passes. (There is nothing left to do.)
+
+10.7. Executing FSM pass (extract and optimize FSM).
+
+10.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+Not marking dft_top.u_tap.state as FSM state register:
+    Circuit seems to be self-resetting.
+
+10.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+10.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+10.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+10.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+10.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+10.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+10.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+10.8. Executing OPT pass (performing simple optimizations).
+
+10.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~85 debug messages>
+
+10.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+Performed a total of 0 changes.
+
+10.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+10.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.8.9. Finished OPT passes. (There is nothing left to do.)
+
+10.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 3) from FF cell dft_top.$procdff$6000 ($adff).
+Removed top 1 bits (of 3) from FF cell dft_top.$procdff$6001 ($adff).
+Removed top 1 bits (of 3) from FF cell dft_top.$procdff$6002 ($adff).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5319_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5320_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5321_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5322_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5323_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5324_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5325_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5326_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5327_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5328_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5329_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5330_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5331_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5332_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5333_CMP0 ($eq).
+Removed top 1 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5334_CMP0 ($eq).
+Removed top 2 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5335_CMP0 ($eq).
+Removed top 2 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5336_CMP0 ($eq).
+Removed top 2 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5337_CMP0 ($eq).
+Removed top 2 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5338_CMP0 ($eq).
+Removed top 2 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5339_CMP0 ($eq).
+Removed top 2 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5341_CMP0 ($eq).
+Removed top 2 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5342_CMP0 ($eq).
+Removed top 3 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5343_CMP0 ($eq).
+Removed top 3 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5344_CMP0 ($eq).
+Removed top 3 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5345_CMP0 ($eq).
+Removed top 3 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5346_CMP0 ($eq).
+Removed top 4 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5347_CMP0 ($eq).
+Removed top 4 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5348_CMP0 ($eq).
+Removed top 5 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$procmux$5349_CMP0 ($eq).
+Removed top 2 bits (of 3) from port B of cell dft_top.$flatten\u_mem.\u_bist.$add$rtl/mbist_ctrl.v:36$237 ($add).
+Removed top 1 bits (of 3) from port B of cell dft_top.$flatten\u_mem.\u_bist.$eq$rtl/mbist_ctrl.v:31$283 ($eq).
+Removed top 1 bits (of 3) from mux cell dft_top.$flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:67$304 ($mux).
+Removed top 1 bits (of 3) from port B of cell dft_top.$flatten\u_mem.\u_bist.$le$rtl/mbist_ctrl.v:28$310 ($le).
+Removed top 1 bits (of 3) from mux cell dft_top.$flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:73$313 ($mux).
+Removed top 1 bits (of 3) from port B of cell dft_top.$flatten\u_mem.\u_bist.$le$rtl/mbist_ctrl.v:28$318 ($le).
+Removed top 2 bits (of 3) from port B of cell dft_top.$flatten\u_mem.\u_bist.$eq$rtl/mbist_ctrl.v:32$323 ($eq).
+Removed top 1 bits (of 3) from port B of cell dft_top.$flatten\u_mem.\u_bist.$eq$rtl/mbist_ctrl.v:32$324 ($eq).
+Removed top 1 bits (of 3) from port B of cell dft_top.$flatten\u_mem.\u_bist.$procmux$608_CMP0 ($eq).
+Removed top 2 bits (of 3) from port B of cell dft_top.$flatten\u_mem.\u_bist.$procmux$610_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell dft_top.$flatten\u_mem.\u_bist.$procmux$632_CMP0 ($eq).
+Removed top 2 bits (of 6) from port B of cell dft_top.$flatten\u_mem.\u_ram.$eq$rtl/sram_model.v:31$216 ($eq).
+Removed top 1 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$procmux$456_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$procmux$453_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$procmux$452_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$procmux$449_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$eq$rtl/jtag_tap.v:89$362 ($eq).
+Removed top 2 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$eq$rtl/jtag_tap.v:76$358 ($eq).
+Removed top 1 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$eq$rtl/jtag_tap.v:71$357 ($eq).
+Removed top 1 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$eq$rtl/jtag_tap.v:68$355 ($eq).
+Removed top 2 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$eq$rtl/jtag_tap.v:67$354 ($eq).
+Removed top 3 bits (of 4) from port B of cell dft_top.$flatten\u_tap.$eq$rtl/jtag_tap.v:66$352 ($eq).
+Removed top 1 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:41$342 ($mux).
+Removed top 2 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:40$341 ($mux).
+Removed top 1 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:39$340 ($mux).
+Removed top 2 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:37$338 ($mux).
+Removed top 3 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:36$337 ($mux).
+Removed top 1 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:34$335 ($mux).
+Removed top 2 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:33$334 ($mux).
+Removed top 1 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:32$333 ($mux).
+Removed top 2 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:30$331 ($mux).
+Removed top 2 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:29$330 ($mux).
+Removed top 2 bits (of 4) from mux cell dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:27$328 ($mux).
+Removed top 1 bits (of 3) from wire dft_top.$flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:67$304_Y.
+Removed top 1 bits (of 3) from wire dft_top.$flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:73$313_Y.
+Removed top 2 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:27$328_Y.
+Removed top 2 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:29$330_Y.
+Removed top 2 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:30$331_Y.
+Removed top 1 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:32$333_Y.
+Removed top 3 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:33$334_Y.
+Removed top 1 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:34$335_Y.
+Removed top 2 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:37$338_Y.
+Removed top 1 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:39$340_Y.
+Removed top 3 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:40$341_Y.
+Removed top 1 bits (of 4) from wire dft_top.$flatten\u_tap.$ternary$rtl/jtag_tap.v:41$342_Y.
+Removed top 1 bits (of 3) from wire dft_top.busy_s.
+Removed top 1 bits (of 3) from wire dft_top.fail_s.
+
+10.10. Executing PEEPOPT pass (run peephole optimizers).
+
+10.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+Removed 0 unused cells and 14 unused wires.
+<suppressed ~1 debug messages>
+
+10.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module dft_top:
+  creating $macc model for $flatten\u_mem.\u_bist.$add$rtl/mbist_ctrl.v:36$237 ($add).
+  creating $macc model for $flatten\u_mem.\u_bist.$add$rtl/mbist_ctrl.v:66$300 ($add).
+  creating $macc model for $flatten\u_mem.\u_bist.$sub$rtl/mbist_ctrl.v:66$301 ($sub).
+  creating $alu model for $macc $flatten\u_mem.\u_bist.$sub$rtl/mbist_ctrl.v:66$301.
+  creating $alu model for $macc $flatten\u_mem.\u_bist.$add$rtl/mbist_ctrl.v:66$300.
+  creating $alu model for $macc $flatten\u_mem.\u_bist.$add$rtl/mbist_ctrl.v:36$237.
+  creating $alu model for $flatten\u_mem.\u_bist.$le$rtl/mbist_ctrl.v:28$310 ($le): new $alu
+  creating $alu model for $flatten\u_mem.\u_bist.$le$rtl/mbist_ctrl.v:28$318 ($le): new $alu
+  creating $alu model for $flatten\u_mem.\u_bist.$eq$rtl/mbist_ctrl.v:31$283 ($eq): merged with $flatten\u_mem.\u_bist.$le$rtl/mbist_ctrl.v:28$318.
+  creating $alu cell for $flatten\u_mem.\u_bist.$le$rtl/mbist_ctrl.v:28$318, $flatten\u_mem.\u_bist.$eq$rtl/mbist_ctrl.v:31$283: $auto$alumacc.cc:485:replace_alu$6721
+  creating $alu cell for $flatten\u_mem.\u_bist.$le$rtl/mbist_ctrl.v:28$310: $auto$alumacc.cc:485:replace_alu$6734
+  creating $alu cell for $flatten\u_mem.\u_bist.$add$rtl/mbist_ctrl.v:36$237: $auto$alumacc.cc:485:replace_alu$6747
+  creating $alu cell for $flatten\u_mem.\u_bist.$add$rtl/mbist_ctrl.v:66$300: $auto$alumacc.cc:485:replace_alu$6750
+  creating $alu cell for $flatten\u_mem.\u_bist.$sub$rtl/mbist_ctrl.v:66$301: $auto$alumacc.cc:485:replace_alu$6753
+  created 5 $alu and 0 $macc cells.
+
+10.13. Executing SHARE pass (SAT-based resource sharing).
+
+10.14. Executing OPT pass (performing simple optimizations).
+
+10.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~85 debug messages>
+
+10.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+Performed a total of 0 changes.
+
+10.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+<suppressed ~12 debug messages>
+Removed a total of 4 cells.
+
+10.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+Removed 0 unused cells and 7 unused wires.
+<suppressed ~1 debug messages>
+
+10.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+10.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~85 debug messages>
+
+10.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+Performed a total of 0 changes.
+
+10.14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+10.14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.14.16. Finished OPT passes. (There is nothing left to do.)
+
+10.15. Executing MEMORY pass.
+
+10.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+10.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+10.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+10.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+10.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+10.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+10.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+10.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+10.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+10.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+10.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+10.17. Executing OPT pass (performing simple optimizations).
+
+10.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+<suppressed ~87 debug messages>
+
+10.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+Removed 0 unused cells and 79 unused wires.
+<suppressed ~1 debug messages>
+
+10.17.5. Finished fast OPT passes.
+
+10.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+10.19. Executing OPT pass (performing simple optimizations).
+
+10.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+<suppressed ~3 debug messages>
+
+10.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~18 debug messages>
+
+10.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+    Consolidated identical input bits for $mux cell $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:34$235:
+      Old ports: A=6'000000, B=6'111111, Y=\u_mem.u_bist.last_addr
+      New ports: A=1'0, B=1'1, Y=\u_mem.u_bist.last_addr [0]
+      New connections: \u_mem.u_bist.last_addr [5:1] = { \u_mem.u_bist.last_addr [0] \u_mem.u_bist.last_addr [0] \u_mem.u_bist.last_addr [0] \u_mem.u_bist.last_addr [0] \u_mem.u_bist.last_addr [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:61$289:
+      Old ports: A=3'100, B=3'011, Y=$flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:61$289_Y
+      New ports: A=2'10, B=2'01, Y={ $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:61$289_Y [2] $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:61$289_Y [0] }
+      New connections: $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:61$289_Y [1] = $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:61$289_Y [0]
+    Consolidated identical input bits for $mux cell $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:67$304:
+      Old ports: A=2'11, B=2'01, Y=$auto$wreduce.cc:461:run$6705 [1:0]
+      New ports: A=1'1, B=1'0, Y=$auto$wreduce.cc:461:run$6705 [1]
+      New connections: $auto$wreduce.cc:461:run$6705 [0] = 1'1
+    Consolidated identical input bits for $mux cell $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:72$311:
+      Old ports: A=6'111111, B=6'000000, Y=$flatten\u_mem.\u_bist.$procmux$650_Y
+      New ports: A=1'1, B=1'0, Y=$flatten\u_mem.\u_bist.$procmux$650_Y [0]
+      New connections: $flatten\u_mem.\u_bist.$procmux$650_Y [5:1] = { $flatten\u_mem.\u_bist.$procmux$650_Y [0] $flatten\u_mem.\u_bist.$procmux$650_Y [0] $flatten\u_mem.\u_bist.$procmux$650_Y [0] $flatten\u_mem.\u_bist.$procmux$650_Y [0] $flatten\u_mem.\u_bist.$procmux$650_Y [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:73$313:
+      Old ports: A=2'11, B=2'01, Y=$auto$wreduce.cc:461:run$6706 [1:0]
+      New ports: A=1'1, B=1'0, Y=$auto$wreduce.cc:461:run$6706 [1]
+      New connections: $auto$wreduce.cc:461:run$6706 [0] = 1'1
+    Consolidated identical input bits for $mux cell $flatten\u_tap.$ternary$rtl/jtag_tap.v:27$328:
+      Old ports: A=2'00, B=2'11, Y=$auto$wreduce.cc:461:run$6707 [1:0]
+      New ports: A=1'0, B=1'1, Y=$auto$wreduce.cc:461:run$6707 [0]
+      New connections: $auto$wreduce.cc:461:run$6707 [1] = $auto$wreduce.cc:461:run$6707 [0]
+    Consolidated identical input bits for $mux cell $flatten\u_tap.$ternary$rtl/jtag_tap.v:29$330:
+      Old ports: A=2'10, B=2'00, Y=$auto$wreduce.cc:461:run$6708 [1:0]
+      New ports: A=1'1, B=1'0, Y=$auto$wreduce.cc:461:run$6708 [1]
+      New connections: $auto$wreduce.cc:461:run$6708 [0] = 1'0
+    Consolidated identical input bits for $mux cell $flatten\u_tap.$ternary$rtl/jtag_tap.v:32$333:
+      Old ports: A=3'011, B=3'101, Y=$auto$wreduce.cc:461:run$6710 [2:0]
+      New ports: A=2'01, B=2'10, Y=$auto$wreduce.cc:461:run$6710 [2:1]
+      New connections: $auto$wreduce.cc:461:run$6710 [0] = 1'1
+    Consolidated identical input bits for $mux cell $flatten\u_tap.$ternary$rtl/jtag_tap.v:33$334:
+      Old ports: A=2'11, B=2'00, Y=$auto$wreduce.cc:461:run$6711 [1:0]
+      New ports: A=1'1, B=1'0, Y=$auto$wreduce.cc:461:run$6711 [0]
+      New connections: $auto$wreduce.cc:461:run$6711 [1] = $auto$wreduce.cc:461:run$6711 [0]
+    Consolidated identical input bits for $mux cell $flatten\u_tap.$ternary$rtl/jtag_tap.v:34$335:
+      Old ports: A=3'010, B=3'101, Y=$auto$wreduce.cc:461:run$6712 [2:0]
+      New ports: A=2'10, B=2'01, Y=$auto$wreduce.cc:461:run$6712 [1:0]
+      New connections: $auto$wreduce.cc:461:run$6712 [2] = $auto$wreduce.cc:461:run$6712 [0]
+    Consolidated identical input bits for $mux cell $flatten\u_tap.$ternary$rtl/jtag_tap.v:42$343:
+      Old ports: A=4'1100, B=4'0111, Y=$flatten\u_tap.$ternary$rtl/jtag_tap.v:28$329_Y
+      New ports: A=2'10, B=2'01, Y={ $flatten\u_tap.$ternary$rtl/jtag_tap.v:28$329_Y [3] $flatten\u_tap.$ternary$rtl/jtag_tap.v:28$329_Y [0] }
+      New connections: $flatten\u_tap.$ternary$rtl/jtag_tap.v:28$329_Y [2:1] = { 1'1 $flatten\u_tap.$ternary$rtl/jtag_tap.v:28$329_Y [0] }
+  Optimizing cells in module \dft_top.
+    Consolidated identical input bits for $mux cell $flatten\u_mem.\u_bist.$procmux$601:
+      Old ports: A={ 1'0 $auto$wreduce.cc:461:run$6706 [1:0] }, B=3'101, Y=$flatten\u_mem.\u_bist.$procmux$601_Y
+      New ports: A={ 1'0 $auto$wreduce.cc:461:run$6706 [1] }, B=2'10, Y=$flatten\u_mem.\u_bist.$procmux$601_Y [2:1]
+      New connections: $flatten\u_mem.\u_bist.$procmux$601_Y [0] = 1'1
+  Optimizing cells in module \dft_top.
+    Consolidated identical input bits for $mux cell $flatten\u_mem.\u_bist.$procmux$604:
+      Old ports: A={ 1'0 $auto$wreduce.cc:461:run$6705 [1:0] }, B=$flatten\u_mem.\u_bist.$procmux$601_Y, Y=$flatten\u_mem.\u_bist.$procmux$604_Y
+      New ports: A={ 1'0 $auto$wreduce.cc:461:run$6705 [1] }, B=$flatten\u_mem.\u_bist.$procmux$601_Y [2:1], Y=$flatten\u_mem.\u_bist.$procmux$604_Y [2:1]
+      New connections: $flatten\u_mem.\u_bist.$procmux$604_Y [0] = 1'1
+  Optimizing cells in module \dft_top.
+Performed a total of 13 changes.
+
+10.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+10.19.6. Executing OPT_SHARE pass.
+    Found cells that share an operand and can be merged by moving the $mux $flatten\u_mem.\u_bist.$ternary$rtl/mbist_ctrl.v:66$302 in front of them:
+        $auto$alumacc.cc:485:replace_alu$6750
+        $auto$alumacc.cc:485:replace_alu$6753
+
+10.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+Removed 0 unused cells and 11 unused wires.
+<suppressed ~1 debug messages>
+
+10.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+<suppressed ~8 debug messages>
+
+10.19.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+10.19.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~18 debug messages>
+
+10.19.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+    Consolidated identical input bits for $mux cell $auto$opt_share.cc:244:merge_operators$6759:
+      Old ports: A=6'111111, B=6'000001, Y=$auto$rtlil.cc:2498:Mux$6760
+      New ports: A=1'1, B=1'0, Y=$auto$rtlil.cc:2498:Mux$6760 [1]
+      New connections: { $auto$rtlil.cc:2498:Mux$6760 [5:2] $auto$rtlil.cc:2498:Mux$6760 [0] } = { $auto$rtlil.cc:2498:Mux$6760 [1] $auto$rtlil.cc:2498:Mux$6760 [1] $auto$rtlil.cc:2498:Mux$6760 [1] $auto$rtlil.cc:2498:Mux$6760 [1] 1'1 }
+  Optimizing cells in module \dft_top.
+Performed a total of 1 changes.
+
+10.19.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.19.14. Executing OPT_SHARE pass.
+
+10.19.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.19.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+10.19.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+<suppressed ~1 debug messages>
+
+10.19.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+10.19.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \dft_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~17 debug messages>
+
+10.19.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \dft_top.
+Performed a total of 0 changes.
+
+10.19.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+Removed a total of 0 cells.
+
+10.19.22. Executing OPT_SHARE pass.
+
+10.19.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.19.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+
+10.19.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+
+10.19.26. Finished OPT passes. (There is nothing left to do.)
+
+10.20. Executing TECHMAP pass (map to technology primitives).
+
+10.20.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+10.20.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_or.
+Using template $paramod$79fc7abbb3333dbd5736999d565fd903198fb1eb\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $dffe.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$4702e08009dc7c9e40ffb864e7afd606e21026ef\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $adffe.
+Using template $paramod$00298f3f8094950cb9a5ff2fda48d0d8bde8806c\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_or.
+Using template $paramod$3ef7d3dd227da7627a99c5e5a6a4deb817573e39\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $mux.
+Using template $paramod$56f7ce6d87f8add68ca646dc02d7695a3189f8e5\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $sdffe.
+Using template $paramod$73c1c7322faaaa595331a8d8d336d7d573593385\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000110 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~1011 debug messages>
+
+10.21. Executing OPT pass (performing simple optimizations).
+
+10.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+<suppressed ~724 debug messages>
+
+10.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+<suppressed ~12291 debug messages>
+Removed a total of 4097 cells.
+
+10.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+Removed 18 unused cells and 1124 unused wires.
+<suppressed ~21 debug messages>
+
+10.21.5. Finished fast OPT passes.
+
+10.22. Executing ABC pass (technology mapping using ABC).
+
+10.22.1. Extracting gate netlist of module `\dft_top' to `<abc-temp-dir>/input.blif'..
+Extracted 2168 gates and 2760 wires to a netlist network with 590 inputs and 139 outputs.
+
+10.22.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+10.22.1.2. Re-integrating ABC results.
+ABC RESULTS:              XNOR cells:        8
+ABC RESULTS:               XOR cells:       17
+ABC RESULTS:               AND cells:       10
+ABC RESULTS:               NOT cells:       25
+ABC RESULTS:               NOR cells:       83
+ABC RESULTS:              NAND cells:        9
+ABC RESULTS:               MUX cells:       72
+ABC RESULTS:             ORNOT cells:       17
+ABC RESULTS:                OR cells:     1154
+ABC RESULTS:            ANDNOT cells:      664
+ABC RESULTS:        internal signals:     2031
+ABC RESULTS:           input signals:      590
+ABC RESULTS:          output signals:      139
+Removing temp directory.
+
+10.23. Executing OPT pass (performing simple optimizations).
+
+10.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module dft_top.
+<suppressed ~86 debug messages>
+
+10.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\dft_top'.
+<suppressed ~18 debug messages>
+Removed a total of 6 cells.
+
+10.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \dft_top..
+Removed 4 unused cells and 1483 unused wires.
+<suppressed ~18 debug messages>
+
+10.23.5. Finished fast OPT passes.
+
+10.24. Executing HIERARCHY pass (managing design hierarchy).
+
+10.24.1. Analyzing design hierarchy..
+Top module:  \dft_top
+
+10.24.2. Analyzing design hierarchy..
+Top module:  \dft_top
+Removed 0 unused modules.
+
+10.25. Printing statistics.
+
+=== dft_top ===
+
+   Number of wires:               2169
+   Number of wire bits:           2883
+   Number of public wires:         149
+   Number of public wire bits:     833
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               2659
+     $_ANDNOT_                     664
+     $_AND_                          8
+     $_DFFE_NN0P_                   12
+     $_DFFE_NN1P_                    1
+     $_DFFE_PN0P_                   14
+     $_DFFE_PN_                     11
+     $_DFFE_PP_                    520
+     $_DFF_NN0_                      3
+     $_DFF_PN0_                      9
+     $_DFF_PN1_                      4
+     $_MUX_                         72
+     $_NAND_                         9
+     $_NOR_                         83
+     $_NOT_                         21
+     $_ORNOT_                       16
+     $_OR_                        1154
+     $_SDFFE_PP0P_                  23
+     $_SDFFE_PP1P_                  13
+     $_XNOR_                         8
+     $_XOR_                         14
+
+10.26. Executing CHECK pass (checking for obvious problems).
+Checking module dft_top...
+Found and reported 0 problems.
+
+11. Printing statistics.
+
+=== dft_top ===
+
+   Number of wires:               2169
+   Number of wire bits:           2883
+   Number of public wires:         149
+   Number of public wire bits:     833
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               2659
+     $_ANDNOT_                     664
+     $_AND_                          8
+     $_DFFE_NN0P_                   12
+     $_DFFE_NN1P_                    1
+     $_DFFE_PN0P_                   14
+     $_DFFE_PN_                     11
+     $_DFFE_PP_                    520
+     $_DFF_NN0_                      3
+     $_DFF_PN0_                      9
+     $_DFF_PN1_                      4
+     $_MUX_                         72
+     $_NAND_                         9
+     $_NOR_                         83
+     $_NOT_                         21
+     $_ORNOT_                       16
+     $_OR_                        1154
+     $_SDFFE_PP0P_                  23
+     $_SDFFE_PP1P_                  13
+     $_XNOR_                         8
+     $_XOR_                         14
+
+12. Executing Verilog backend.
+
+12.1. Executing BMUXMAP pass.
+
+12.2. Executing DEMUXMAP pass.
+Dumping module `\dft_top'.
+
+Warnings: 1 unique messages, 2 total
+End of script. Logfile hash: 45802e36a1, CPU: user 2.39s system 0.03s, MEM: 52.95 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 34% 26x opt_expr (0 sec), 12% 21x opt_merge (0 sec), ...

@@ -1,0 +1,763 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Executing script file `scripts/synth_lbist.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/lfsr32.v
+Parsing Verilog input from `rtl/lfsr32.v' to AST representation.
+Generating RTLIL representation for module `\lfsr32'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/misr16.v
+Parsing Verilog input from `rtl/misr16.v' to AST representation.
+Generating RTLIL representation for module `\misr16'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: rtl/cut_adder.v
+Parsing Verilog input from `rtl/cut_adder.v' to AST representation.
+Generating RTLIL representation for module `\cut_adder'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: rtl/lbist_top.v
+Parsing Verilog input from `rtl/lbist_top.v' to AST representation.
+Generating RTLIL representation for module `\lbist_top'.
+Successfully finished Verilog frontend.
+
+5. Executing HIERARCHY pass (managing design hierarchy).
+
+5.1. Analyzing design hierarchy..
+Top module:  \lbist_top
+Used module:     \misr16
+Used module:     \cut_adder
+Used module:     \lfsr32
+
+5.2. Analyzing design hierarchy..
+Top module:  \lbist_top
+Used module:     \misr16
+Used module:     \cut_adder
+Used module:     \lfsr32
+Removed 0 unused modules.
+
+6. Executing SYNTH pass.
+
+6.1. Executing HIERARCHY pass (managing design hierarchy).
+
+6.1.1. Analyzing design hierarchy..
+Top module:  \lbist_top
+Used module:     \misr16
+Used module:     \cut_adder
+Used module:     \lfsr32
+
+6.1.2. Analyzing design hierarchy..
+Top module:  \lbist_top
+Used module:     \misr16
+Used module:     \cut_adder
+Used module:     \lfsr32
+Removed 0 unused modules.
+
+6.2. Executing PROC pass (convert processes to netlists).
+
+6.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+6.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$rtl/lbist_top.v:29$146 in module lbist_top.
+Marked 2 switch rules as full_case in process $proc$rtl/misr16.v:7$5 in module misr16.
+Marked 2 switch rules as full_case in process $proc$rtl/lfsr32.v:6$1 in module lfsr32.
+Removed a total of 0 dead cases.
+
+6.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 0 assignments to connections.
+
+6.2.4. Executing PROC_INIT pass (extract init attributes).
+
+6.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\lbist_top.$proc$rtl/lbist_top.v:29$146'.
+Found async reset \rst_n in `\misr16.$proc$rtl/misr16.v:7$5'.
+Found async reset \rst_n in `\lfsr32.$proc$rtl/lfsr32.v:6$1'.
+
+6.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~7 debug messages>
+
+6.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\lbist_top.$proc$rtl/lbist_top.v:29$146'.
+     1/4: $0\ld[0:0]
+     2/4: $0\cnt[15:0]
+     3/4: $0\run[0:0]
+     4/4: $0\done[0:0]
+Creating decoders for process `\misr16.$proc$rtl/misr16.v:7$5'.
+     1/1: $0\sig[15:0]
+Creating decoders for process `\lfsr32.$proc$rtl/lfsr32.v:6$1'.
+     1/1: $0\q[31:0]
+
+6.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+6.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\lbist_top.\done' using process `\lbist_top.$proc$rtl/lbist_top.v:29$146'.
+  created $adff cell `$procdff$185' with positive edge clock and negative level reset.
+Creating register for signal `\lbist_top.\run' using process `\lbist_top.$proc$rtl/lbist_top.v:29$146'.
+  created $adff cell `$procdff$186' with positive edge clock and negative level reset.
+Creating register for signal `\lbist_top.\cnt' using process `\lbist_top.$proc$rtl/lbist_top.v:29$146'.
+  created $adff cell `$procdff$187' with positive edge clock and negative level reset.
+Creating register for signal `\lbist_top.\ld' using process `\lbist_top.$proc$rtl/lbist_top.v:29$146'.
+  created $adff cell `$procdff$188' with positive edge clock and negative level reset.
+Creating register for signal `\misr16.\sig' using process `\misr16.$proc$rtl/misr16.v:7$5'.
+  created $adff cell `$procdff$189' with positive edge clock and negative level reset.
+Creating register for signal `\lfsr32.\q' using process `\lfsr32.$proc$rtl/lfsr32.v:6$1'.
+  created $adff cell `$procdff$190' with positive edge clock and negative level reset.
+
+6.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+6.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 3 empty switches in `\lbist_top.$proc$rtl/lbist_top.v:29$146'.
+Removing empty process `lbist_top.$proc$rtl/lbist_top.v:29$146'.
+Found and cleaned up 2 empty switches in `\misr16.$proc$rtl/misr16.v:7$5'.
+Removing empty process `misr16.$proc$rtl/misr16.v:7$5'.
+Found and cleaned up 2 empty switches in `\lfsr32.$proc$rtl/lfsr32.v:6$1'.
+Removing empty process `lfsr32.$proc$rtl/lfsr32.v:6$1'.
+Cleaned up 7 empty switches.
+
+6.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+Optimizing module cut_adder.
+<suppressed ~1 debug messages>
+Optimizing module misr16.
+Optimizing module lfsr32.
+
+6.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module cut_adder.
+Deleting now unused module misr16.
+Deleting now unused module lfsr32.
+<suppressed ~3 debug messages>
+
+6.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+Removed 3 unused cells and 86 unused wires.
+<suppressed ~4 debug messages>
+
+6.6. Executing CHECK pass (checking for obvious problems).
+Checking module lbist_top...
+Found and reported 0 problems.
+
+6.7. Executing OPT pass (performing simple optimizations).
+
+6.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \lbist_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$163: \run -> 1'0
+      Replacing known input bits on port A of cell $procmux$161: \run -> 1'1
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~40 debug messages>
+
+6.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \lbist_top.
+Performed a total of 0 changes.
+
+6.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+
+6.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.7.9. Finished OPT passes. (There is nothing left to do.)
+
+6.8. Executing FSM pass (extract and optimize FSM).
+
+6.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+6.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+6.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+
+6.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+6.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+6.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+6.9. Executing OPT pass (performing simple optimizations).
+
+6.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \lbist_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~40 debug messages>
+
+6.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \lbist_top.
+Performed a total of 0 changes.
+
+6.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$187 ($adff) from module lbist_top (D = $0\cnt[15:0], Q = \cnt).
+Adding EN signal on $procdff$185 ($adff) from module lbist_top (D = $0\done[0:0], Q = \done).
+Adding EN signal on $flatten\u_prpg.$procdff$190 ($adff) from module lbist_top (D = $flatten\u_prpg.$0\q[31:0], Q = \u_prpg.q).
+Adding EN signal on $flatten\u_misr.$procdff$189 ($adff) from module lbist_top (D = $flatten\u_misr.$0\sig[15:0], Q = \u_misr.sig).
+
+6.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+
+6.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+<suppressed ~4 debug messages>
+
+6.9.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.9.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \lbist_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~40 debug messages>
+
+6.9.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \lbist_top.
+Performed a total of 0 changes.
+
+6.9.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+6.9.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.9.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+6.9.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.9.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.9.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \lbist_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~40 debug messages>
+
+6.9.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \lbist_top.
+Performed a total of 0 changes.
+
+6.9.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.9.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.9.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+
+6.9.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.9.23. Finished OPT passes. (There is nothing left to do.)
+
+6.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 31 bits (of 32) from port B of cell lbist_top.$sub$rtl/lbist_top.v:36$151 ($sub).
+Removed top 15 bits (of 32) from port Y of cell lbist_top.$sub$rtl/lbist_top.v:36$151 ($sub).
+Removed top 9 bits (of 32) from mux cell lbist_top.$flatten\u_prpg.$ternary$rtl/lfsr32.v:9$3 ($mux).
+Removed top 2 bits (of 3) from port B of cell lbist_top.$auto$opt_dff.cc:195:make_patterns_logic$198 ($ne).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:27$143 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:25$139 ($eq).
+Removed top 2 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:23$134 ($eq).
+Removed top 3 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:22$131 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:27$126 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:25$122 ($eq).
+Removed top 2 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:23$117 ($eq).
+Removed top 3 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:22$114 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:27$109 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:25$105 ($eq).
+Removed top 2 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:23$100 ($eq).
+Removed top 3 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:22$97 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:27$92 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:25$88 ($eq).
+Removed top 2 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:23$83 ($eq).
+Removed top 3 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:22$80 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:27$75 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:25$71 ($eq).
+Removed top 2 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:23$66 ($eq).
+Removed top 4 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:22$63 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:27$58 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:25$54 ($eq).
+Removed top 2 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:23$49 ($eq).
+Removed top 4 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:22$46 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:27$41 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:25$37 ($eq).
+Removed top 2 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:23$32 ($eq).
+Removed top 5 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:22$29 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:27$24 ($eq).
+Removed top 1 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:25$20 ($eq).
+Removed top 2 bits (of 6) from port B of cell lbist_top.$flatten\u_cut.$eq$rtl/cut_adder.v:23$15 ($eq).
+Removed top 7 bits (of 16) from port B of cell lbist_top.$flatten\u_misr.$xor$rtl/misr16.v:10$9 ($xor).
+Removed top 9 bits (of 32) from wire lbist_top.$flatten\u_prpg.$ternary$rtl/lfsr32.v:9$3_Y.
+
+6.11. Executing PEEPOPT pass (run peephole optimizers).
+
+6.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+6.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module lbist_top:
+  creating $macc model for $add$rtl/lbist_top.v:35$150 ($add).
+  creating $macc model for $sub$rtl/lbist_top.v:36$151 ($sub).
+  creating $alu model for $macc $sub$rtl/lbist_top.v:36$151.
+  creating $alu model for $macc $add$rtl/lbist_top.v:35$150.
+  creating $alu cell for $add$rtl/lbist_top.v:35$150: $auto$alumacc.cc:485:replace_alu$208
+  creating $alu cell for $sub$rtl/lbist_top.v:36$151: $auto$alumacc.cc:485:replace_alu$211
+  created 2 $alu and 0 $macc cells.
+
+6.14. Executing SHARE pass (SAT-based resource sharing).
+
+6.15. Executing OPT pass (performing simple optimizations).
+
+6.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \lbist_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~40 debug messages>
+
+6.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \lbist_top.
+Performed a total of 0 changes.
+
+6.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+
+6.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.15.9. Finished OPT passes. (There is nothing left to do.)
+
+6.16. Executing MEMORY pass.
+
+6.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+6.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+6.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+6.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+6.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+6.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+
+6.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+6.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+6.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+
+6.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+6.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+
+6.18. Executing OPT pass (performing simple optimizations).
+
+6.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+<suppressed ~25 debug messages>
+
+6.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.18.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+Removed 0 unused cells and 10 unused wires.
+<suppressed ~1 debug messages>
+
+6.18.5. Finished fast OPT passes.
+
+6.19. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6.20. Executing OPT pass (performing simple optimizations).
+
+6.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+<suppressed ~1 debug messages>
+
+6.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \lbist_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~37 debug messages>
+
+6.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \lbist_top.
+    Consolidated identical input bits for $mux cell $flatten\u_misr.$ternary$rtl/misr16.v:10$7:
+      Old ports: A=16'0000000000000000, B=16'1010000000010001, Y={ $flatten\u_misr.$ternary$rtl/misr16.v:10$7_Y [15:1] $auto$opt_expr.cc:205:group_cell_inputs$219 }
+      New ports: A=1'0, B=1'1, Y=$auto$opt_expr.cc:205:group_cell_inputs$219
+      New connections: $flatten\u_misr.$ternary$rtl/misr16.v:10$7_Y [15:1] = { $auto$opt_expr.cc:205:group_cell_inputs$219 1'0 $auto$opt_expr.cc:205:group_cell_inputs$219 8'00000000 $auto$opt_expr.cc:205:group_cell_inputs$219 3'000 }
+    Consolidated identical input bits for $mux cell $flatten\u_prpg.$ternary$rtl/lfsr32.v:9$3:
+      Old ports: A=23'00000000000000000000000, B=23'10000000000000000000111, Y={ $auto$wreduce.cc:461:run$207 [22:1] $auto$opt_expr.cc:205:group_cell_inputs$216 [9] }
+      New ports: A=1'0, B=1'1, Y=$auto$opt_expr.cc:205:group_cell_inputs$216 [9]
+      New connections: $auto$wreduce.cc:461:run$207 [22:1] = { $auto$opt_expr.cc:205:group_cell_inputs$216 [9] 19'0000000000000000000 $auto$opt_expr.cc:205:group_cell_inputs$216 [9] $auto$opt_expr.cc:205:group_cell_inputs$216 [9] }
+  Optimizing cells in module \lbist_top.
+Performed a total of 2 changes.
+
+6.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.20.6. Executing OPT_SHARE pass.
+
+6.20.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.20.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+6.20.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+<suppressed ~12 debug messages>
+
+6.20.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.20.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \lbist_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~35 debug messages>
+
+6.20.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \lbist_top.
+Performed a total of 0 changes.
+
+6.20.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.20.14. Executing OPT_SHARE pass.
+
+6.20.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.20.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+Removed 0 unused cells and 6 unused wires.
+<suppressed ~1 debug messages>
+
+6.20.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.20.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.20.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \lbist_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~35 debug messages>
+
+6.20.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \lbist_top.
+Performed a total of 0 changes.
+
+6.20.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+Removed a total of 0 cells.
+
+6.20.22. Executing OPT_SHARE pass.
+
+6.20.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.20.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+
+6.20.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+
+6.20.26. Finished OPT passes. (There is nothing left to do.)
+
+6.21. Executing TECHMAP pass (map to technology primitives).
+
+6.21.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+6.21.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $logic_and.
+Using template $paramod$d588c4475f18bc347201f0f2671d73b8c1e7b7ea\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $adff.
+Using template $paramod$2af30114e9bd4ccb04dad757b3f0a8f6bf0615b0\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010001 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~663 debug messages>
+
+6.22. Executing OPT pass (performing simple optimizations).
+
+6.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+<suppressed ~355 debug messages>
+
+6.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+<suppressed ~537 debug messages>
+Removed a total of 179 cells.
+
+6.22.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+Removed 19 unused cells and 298 unused wires.
+<suppressed ~20 debug messages>
+
+6.22.5. Finished fast OPT passes.
+
+6.23. Executing ABC pass (technology mapping using ABC).
+
+6.23.1. Extracting gate netlist of module `\lbist_top' to `<abc-temp-dir>/input.blif'..
+Extracted 454 gates and 547 wires to a netlist network with 91 inputs and 70 outputs.
+
+6.23.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+6.23.1.2. Re-integrating ABC results.
+ABC RESULTS:             ORNOT cells:        5
+ABC RESULTS:               NOR cells:        7
+ABC RESULTS:               AND cells:        1
+ABC RESULTS:              NAND cells:       20
+ABC RESULTS:              XNOR cells:        6
+ABC RESULTS:               XOR cells:       71
+ABC RESULTS:            ANDNOT cells:      131
+ABC RESULTS:                OR cells:      103
+ABC RESULTS:               NOT cells:       23
+ABC RESULTS:               MUX cells:       34
+ABC RESULTS:        internal signals:      386
+ABC RESULTS:           input signals:       91
+ABC RESULTS:          output signals:       70
+Removing temp directory.
+
+6.24. Executing OPT pass (performing simple optimizations).
+
+6.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module lbist_top.
+<suppressed ~2 debug messages>
+
+6.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\lbist_top'.
+<suppressed ~15 debug messages>
+Removed a total of 5 cells.
+
+6.24.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \lbist_top..
+Removed 1 unused cells and 362 unused wires.
+<suppressed ~36 debug messages>
+
+6.24.5. Finished fast OPT passes.
+
+6.25. Executing HIERARCHY pass (managing design hierarchy).
+
+6.25.1. Analyzing design hierarchy..
+Top module:  \lbist_top
+
+6.25.2. Analyzing design hierarchy..
+Top module:  \lbist_top
+Removed 0 unused modules.
+
+6.26. Printing statistics.
+
+=== lbist_top ===
+
+   Number of wires:                417
+   Number of wire bits:            622
+   Number of public wires:          37
+   Number of public wire bits:     227
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                462
+     $_ANDNOT_                     131
+     $_AND_                          1
+     $_DFFE_PN0P_                   52
+     $_DFFE_PN1P_                   13
+     $_DFF_PN0_                      2
+     $_MUX_                         34
+     $_NAND_                        20
+     $_NOR_                          7
+     $_NOT_                         22
+     $_ORNOT_                        5
+     $_OR_                          98
+     $_XNOR_                         6
+     $_XOR_                         71
+
+6.27. Executing CHECK pass (checking for obvious problems).
+Checking module lbist_top...
+Found and reported 0 problems.
+
+7. Printing statistics.
+
+=== lbist_top ===
+
+   Number of wires:                417
+   Number of wire bits:            622
+   Number of public wires:          37
+   Number of public wire bits:     227
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                462
+     $_ANDNOT_                     131
+     $_AND_                          1
+     $_DFFE_PN0P_                   52
+     $_DFFE_PN1P_                   13
+     $_DFF_PN0_                      2
+     $_MUX_                         34
+     $_NAND_                        20
+     $_NOR_                          7
+     $_NOT_                         22
+     $_ORNOT_                        5
+     $_OR_                          98
+     $_XNOR_                         6
+     $_XOR_                         71
+
+End of script. Logfile hash: 8662ff091c, CPU: user 0.30s system 0.00s, MEM: 16.27 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 27% 21x opt_expr (0 sec), 15% 19x opt_clean (0 sec), ...

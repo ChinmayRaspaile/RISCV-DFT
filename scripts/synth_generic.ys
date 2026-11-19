@@ -1,0 +1,7 @@
+# Generic (technology-independent) synthesis of the DFT blocks - verified to run with Yosys 0.33
+read_verilog rtl/sram_model.v rtl/mbist_ctrl.v rtl/mem_bist_wrap.v rtl/jtag_tap.v rtl/dft_top.v
+hierarchy -check -top dft_top
+proc; flatten; opt
+synth -top dft_top
+stat
+write_verilog -noattr results/dft_top_generic.v
