@@ -2620,6 +2620,6 @@ Found and reported 0 problems.
      $_XNOR_                       113
      $_XOR_                        388
 
-End of script. Logfile hash: 19ee969b10, CPU: user 4.37s system 0.04s, MEM: 59.61 MB peak
+End of script. Logfile hash: 19ee969b10, CPU: user 4.58s system 0.02s, MEM: 59.66 MB peak
 Yosys 0.33 (git sha1 2584903a060)
 Time spent: 33% 39x opt_expr (1 sec), 15% 31x opt_clean (0 sec), ...
